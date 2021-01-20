@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* BanglaFont */
+
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
+:root {
+  --roboto: "Roboto", sans-serif;
+  --engfont: "Raleway", sans-serif;
+  --banglafont: "Hind Siliguri", sans-serif;
+  --bg: #5cdb94;
+  --darkcolor: #05396b;
+  --lightcolor: #edf5e0;
+  --btn: #389583;
+  --btnhover: #edf5e0;
+  --dj: #0c4b33;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--banglafont);
+}
+
+.section-start {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.firstpage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--bg);
+  position: fixed;
+  z-index: -11;
+}
+
+.fullwidth {
+  margin: 0;
+  padding: 0;
+}
+
+.t1 {
+  color: var(--darkcolor);
+  font-weight: 900;
+  font-size: 5rem;
+  letter-spacing: 0.2rem;
+  font-family: roboto;
+}
+
+.t2 {
+  color: var(--darkcolor);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.section2 {
+  min-height: 100vh;
+  background: var(--lightcolor);
+  padding-bottom: 1rem;
+}
+
+.secpage {
+  min-height: 100vh;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin: 0;
+  padding: 0;
+  line-height: 2.3rem;
+  font-size: 1.2rem;
+  text-align: justify;
+}
+.projectnav{
+  width: 100%;
+}
+.projectnav a{
+  color: white;
+  background: var(--btn);
+  width: 100%;
+  display: block;
+  text-align: center;
+  border: .1rem solid #bee2ff;
+  border-radius: .4rem;
+  padding: .6rem 0rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: .1rem;
+  margin: 1rem 0rem;
+}
+.projectnav a:hover{
+  background: var(--btnhover);
+  color: var(--darkcolor);
+  border: .1rem solid var(--darkcolor);
+
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+
+}

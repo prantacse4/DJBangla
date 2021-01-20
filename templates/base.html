@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,15 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="Description" content="Enter your description here"/>
 <link rel="stylesheet" href="{% static 'css/bootstrap4.5.css' %}">
-<link rel="stylesheet" href="{% static 'css/fontawesome5.15.1.css' %}">
+<link rel="stylesheet" href="{% static 'css/fontawesome5.15.css' %}">
+
+{% block extracsscdn %}
+    
+{% endblock extracsscdn %}
+    
+<link rel="stylesheet" href="{% static 'css/basestyle.css' %}">
+<link rel="stylesheet" href="{% static 'css/crudsearch.css' %}">
+<link rel="icon" href="{% static 'img/logo.png' %}" type="image/png" >
 <title>
 {% block title %}
     
@@ -26,6 +35,11 @@
     {% endblock body %}
 <script src="{% static 'js/jquery3.5.1.js' %}"></script>
 <script src="{% static 'js/bootstrap4.5.js' %}"></script>
+
+{% block extrajscdn %}
+    
+{% endblock extrajscdn %}
+    
 
 {% block scripts %}
     

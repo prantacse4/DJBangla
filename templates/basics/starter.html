@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+ {% block title %} Starter {% endblock title %} {% block nav %}
+<!-- {% include 'basics/navbar.html' %} -->
+{% endblock nav %} {% block body %}
+
+<section class="section-start">
+    <div class="firstpage">
+        <h5 class="t1">DJBangla</h5>
+        <h5 class="t2">টিউটোরিয়ালের প্রথম পেজ এ স্বাগতম</h5>
+    </div>
+</section>
+
+<section class="section2">
+    <div class="secpage">
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>জ্যাংগো ইনভারনমেন্ট</b></h4>
+            <hr>
+            <p>
+                প্রথমে পাইথন এর অফিশিয়াল সাইট থেকে পাইথন ডাউনলোড করে নিতে হবে। ইনস্টল দেয়ার সময় Add to Path এ সিলেক্ট
+                করে দিতে হবে। এতেই পাইথন এর ইনভাইরনমেন্ট তৈরি হয়ে যাবে। হয়েছে কিনা শিওর হতে cmd ওপেন করে python ইন্টার
+                করলেই ভার্শন দেখাবে। এরপর একটি IDE লাগবে। মানে
+                যেখানে কোড করবেন। যদি তা হয় VSCODE তাহলে কিছু এক্সটেনশন লাগবে। আর যদি pycharm হয় তাহলে এক্সটেনশন ইন্সটল
+                করা লাগবে না। VSCODE এ কিভাবে কাজ করতে হবে তা ভার্চুয়াল ইনভাইরনমেন্ট তৈরি করার পর ব্যাখ্যা করা হবে।
+            </p>
+            <hr>
+        </div>
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>জ্যাংগো ভার্চুয়াল ইনভাইরনমেন্ট </b></h4>
+            <hr>
+            <p>
+                একটা ছোটো বিষয় খুব কাজে লাগে এইজন্যে প্রথমে বলে নেই। সবার আগে ভার্চুয়াল ইনভাইরনেন্ট কি?
+                <br><strong>ভার্চুয়াল ইনভাইরনমেন্টঃ</strong> ধরুন আপনার কম্পিউটার এ আপনি জ্যাঙ্গ ইন্সটল দিলেন যার ভার্শন
+                2.0 <br> এরপর এই ভার্শন এ একটা প্রোজেক্ট করলেন। পরে এই প্রোজেক্ট করতে করতে আপনি আপনার জ্যাংগো ভার্শন
+                আপডেট দিলেন যাতে অনেক কিছুর পরিবর্তন
+                আছে। কিন্তু তখনও আপনার এই প্রোজেক্ট বাকি আছে। তাহলে আপনার কোড করা ভার্শন 2.0 তে কিন্তু জ্যাংগো এর ভার্শন
+                3.0 হঊয়ার কারনে আপনার প্রোজেক্ট রান করবে না। তখন আপনি কি করবেন। যার কাছ থেকে শিখেছেন তাকে দোষ দিবেন
+                তাইনা? কিন্তু আমি তো তা হতে দেবো
+                না। <br><br> এই ভার্চুয়াল ইনভাইরনমেন্ট হলো ভার্চুয়ালি তৈরি করা ইনভাইরনমেন্ট যেখানে মনে করুন আপনার
+                কম্পিউটার এর আরেকটি কপি। যেখানে আপনি জ্যাংগো ভার্শন ওই একটা প্রোজেক্ট এর জন্য আপডেট কখনই করবেন না। এটাও
+                ভাবতে পারেন আপনার একটা কম্পিউটারেই
+                এক একটা প্রোজেক্ট এর জন্য এক এক টা কম্পিউটার বানিয়ে নিয়ে করছেন । ব্যাপারটা দারুন না! <br> যতোটুকু
+                বুঝেছেন তার চেয়ে বেশি কিছু জানতে হলে গুগল করে নিতে পারেন। আবার চাইলেই কাজ করতে করতে এমনিতেই সহজেই বুঝে
+                যাবেন।
+                <br><br> এখন সবার আগে দেখে নিবেন যে আপনার কম্পিউটার এ কয়টা ভার্চুয়াল ইনভাইরনমেন্ট আছে বা নেই। cmd ওপেন
+                করে কমান্ড করুন
+                <br><strong>lsvirtualenv</strong><br><br> আপনার পিসি তে বা কোনো ভার্চুয়াল ইনভাইরনমেন্ট এ পাইথন এর কি কি
+                ইন্সটল আছে তা চেক করতে কমান্ড করুন
+                <br><strong>pip list</strong><br><br> কোনো ভার্চুয়াল ইনভাইরনমেন্ট এ কাজ করতে।
+                <br><strong>workon environment_name</strong><br><br>
+
+                <strong>যদি কোনো ইনভাইরনমেন্ট ই না থাকে মানে ধরেন কেবল শুরু করছেন তাহলে কি করবেন! </strong><br>
+                ইন্টারনেট কানেকশন রেখে শুধু cmd তে করবেন।
+                <br><strong>pip install virtualenvwrapper-win</strong>
+                <br><strong>mkvirtualenv environment_name</strong><br><br> এখন আপনি আপনার ইনভাইরনমেন্টটি সিলেক্ট করে
+                সেখানে জ্যাংগো ইন্সটল করতে পারেন বা সিলেক্ট না করলে গ্লোবালি সম্পুর্ন পিসিতে ইন্সটল হয়ে যাবে।<br> আমি
+                ভার্চুয়াল ইনভাইরনমেন্ট এই প্রিফেয়ার
+                করি। যেখানে প্রোজেক্ট করবেন সেখানেই সবকিছু ইন্সটল দিবেন আর প্রোজেক্ট শুরু করার আগে সেই ইনভাইরনমেন্ট
+                সিলেক্ট করে নিবেন কিভাবে সিলেক্ট করতে হয় তা বলাই আছে। নতুন করে আর বলা হবে না।
+            </p>
+            <hr>
+        </div>
+
+
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>Install DJango</b></h4>
+            <hr>
+            <p>
+                যদি ভার্চুয়াল ইনভাইরনমেন্ট এ ইন্সটল দিতে চান তাহলে তা সিলেক্ট করে নিবেন। আর যদি সম্পুর্ন পিসি তে দিতে
+                চান তাহলে সিলেক্ট করার দরকার নাই। আরেকটি জিনিস খুব কাজে লাগবে তা ভার্চুয়াল ইনভাইরনমেন্ট হোক বা পিসি
+                জ্যাংগো এর জন্যে বা যেকোনো ওয়েবসাইট এর জন্য খুব কাজের
+                তাই আগে থেকেই ইন্সটল করে রাখবেন। REST API যদি নাম শুনে থাকেন তাহলে সেটার জন্যেই কাজে লাগবে। কমান্ড গুলো
+                নিচে দেয়া হলো।
+                <br><br><strong>pip install django</strong> (সবচেয়ে নতুন ভার্শন ইন্সটল হবে)
+                <br><strong>pip install django==3.0.7</strong> (আপনার পছন্দ করা ভার্শন)
+                <br><strong>pip install djangorestframework</strong> (REST API)
+            </p>
+            <hr>
+        </div>
+
+
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>নতুন প্রোজেক্ট তৈরি </b></h4>
+            <hr>
+            <p>
+                নতুন প্রোজেক্ট এর জন্য প্রথমে একটি ফোল্ডার সিলেক্ট করে <strong>shift+mouse right button </strong> চেপে
+                Open Command Window Here থেকে ইনভাইরনমেন্ট সিলেক্ট করে তারপর প্রোজেক্ট তৈরি করতে হবে।
+                <br><br><strong>django-admin startproject ProjectName</strong> (এখন সবকিছু হবে DJBangla নাম এ। )
+                <br><br> এখন আপনাকে কোড করতে হবে যার জন্য প্রয়োজন IDE. বলেছিলাম VSCode এর টিউটোরিয়াল ও এখানে দেয়া হবে।
+            </p>
+            <hr>
+        </div>
+
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>VSCODE টিউটোরিয়াল</b></h4>
+            <hr>
+            <p>
+                গুগল এ সার্চ দিয়ে অফিসিয়াল ওয়েবসাইট এ যেয়ে শুধু ডাউনলোড দিতে হবে। আর ইন্সটল করার ও একটি ভিডিও ইউটিউব এ
+                দেখে নেয়া যেতেই পারে। তারপর ইন্সটল করার সময় অবশ্যই ফোল্ডার থেকে কোড এ ওপেন করা বা একটি ফাইল ওপেন করার
+                অপশন এ টিক দিয়ে নিতে হবে এরপরে কিছু এক্সটেনশন
+                লাগবে যা দিয়ে খুব দ্রুত কাজ করা যাবে। কিন্তু তার আগে <strong>গিটহাব এ কাজ করার টিউটোরিয়ালঃ </strong>
+                সবার প্রথমে VSCODE এর ইউজার আইকন দেখা যাবে। ওখানে সাইন ইন করার অপশন থেকে গিঁটহাব একাউন্ট এ সাইন ইন করে
+                নিবেন। প্রথমে VScode
+                ওপেন করে সেখানে প্রোজেক্ট ওপেন করে নিয়ে। মানে প্রোজেক্ট ফোল্ডারে রাইট ক্লিক করে <strong>Open With
+                    Code</strong> দিলেই ওপেন হয়ে যাবে। এরপর গিটহাব এও প্রোজেক্ট এর নামে রিপোজিটরি খুলে নিতে হবে যেকোনো
+                ব্রাউজার থেকে। এর পরে ওই গিট লিংক টা কপি
+                করে রাখতে হবে। এরপরে VSCODE এ ঢুকে গিটহাব এ গেলে Initialize Repository লেখা আসবে। সেখানে ক্লিক করলে গিট
+                মেসেজ Version Controll Message দিতে বলবে সেখানে ইচ্ছামতো মেসেজ দিয়ে ctlr+enter বা ওপরে টিক চিন্হ তে
+                ক্লিক করতে হবে। এরপরে তিনটা ডট
+                আইকন আছে ওখানে ক্লিক করে Pull,Push থেকে Push to তে ক্লিক করলে নিচে ডান সাইড এ Add Remote আসবে সেখানে
+                ক্লিক করলে ওই কপি করা লিংক টি চাইবে। লিংক দেয়ার পর রিমোট নেম চাইবে ওখানে প্রোজেক্ট এর নামে দেয়াই ভালো।
+                দেয়ার পরে ডান সাইড এ নিচেই ক্লাউড
+                এর আইকন দেখা যাবে অনেক ছোটো ওখানে ক্লিক করলেই হয়ে গিঁটহাব এ আপলোড। যদি ডট নেট ফ্রেম ওয়ার্ক না থাকলে চার
+                টা ইরর আসবে সবগুলোতেই নো দিবেন। গিট হাব এ কাজ করতে হলে Git Bash নামের একটা সফটওয়ার ইন্সটল থাকা লাগবে
+                পিসি তে।<br> এরপর যখন আপডেট গুলো
+                গিঁট করবেন তখন শুধু একটাই কাজ তাহলো ওই আপডেট মেসেজ লিখে ctrl+enter বা টিক চিনহ তে ক্লিক করে শুধু নিচেই
+                ওই ক্লাউড এ ক্লিক করলেই হবে। <br>
+                <b>এখন কি কি এক্সটেনশন দিয়ে জ্যাংগো ওয়েব অনেক ফাস্ট ডেভেলপ করা যায়।
+                    এই লিস্ট গুলো এখানে ছাড়া কোথাও পাওয়া যাবে না। </b><br>
+                <b>DJANGO EXTENSION (BACKUP ON GITHUB)</b><br> --------------------------------------------- <br>
+
+                <b>Auto Complete Tag (Jun Han)</b><br>
+                <b>Auto Rename Tag (Jun Han)</b><br>
+                <b>Bootstrap 4CDN Snippet (Simen Daehlin)</b><br>
+                <b>Bracket Pair Colorizer (CoenraadS)</b><br>
+                <b>Bracket Padder (Viable lab)</b><br>
+                <b>Highlight Matching Tag(vincaslt)</b><br>
+                <b>Html Css Support(ecmel)</b><br>
+                <b>Html Snippets(Mohamed Abusaid)</b><br>
+                <b>IntelliSense for CSS class names in HTML(Zignd)</b><br>
+                <b>JavaScript (ES6) code snippets(charalampos karypidis)</b><br>
+                <b>jQuery Code Snippets(Don Jayamanne)</b><br>
+                <b>Prettier (Prettier)(Alt+`)</b><br>
+                <b>Jupyter(Microsoft)</b><br>
+                <b>Live Server(Ritwick Dey)</b><br>
+                <b>Material Icon Theme(Philipp Kief)</b><br>
+                <b>Material Theme(Mattia Astorino)</b>(Material Theme Darker)<br>
+                <b>Open in Browser(TechER)</b><br>
+
+                <b>Pyhton(Microsoft)</b><br>
+                <b>Magic Python(MagicStack Inc.)</b><br>
+                <b>Django (Baptiste Darthenay)</b><br>
+                <b>Jinja(wholroyd)</b>(Python)<br>
+                <b>Visual Studio IntelliCode(Microsoft)</b><br>
+                <b>Django Snippets(bibhasdn)</b><br>
+                <b>Djaneiro - Django Snippets(Scott Barkman)</b><br>
+                <b>Visual Studio IntelliCode(Microsoft)</b><br><br>
+
+
+                <b>PHP EXTENSION(BACKUP)</b><br> --------------------------------------------- <br>
+                <b>Php Debug(Felix Becker)</b><br>
+                <b>Php IntelliSense(Felix Becker)</b><br>
+                <b>Php Intelephense(Ben Mewburn)</b><br>
+                <b>Php Snippets(VSCSnippets)</b><br><br>
+
+
+                <b>LARAVEL EXTENSION(BACKUP)</b><br> --------------------------------------------- <br>
+                <b>Laravel Artisan (Ryan Naddy )</b><br>
+                <b>Laravel Blade Snippets (Winnie Lin)</b><br>
+                <b>Laravel Extra Intellisense (amir)</b><br>
+                <b>Laravel goto view (codingyu)</b><br>
+                <b>Laravel Intellisense (Mohamed Benhide</b><br>
+                <b>Laravel Snippets(Winnie Lin)</b><br>
+                <b>Laravel-goto-controller(stef-k)</b><br>
+                <b>DotENV(mikestead)</b><br>
+                <b>Php Debug(Felix Becker)</b><br>
+                <b>Php Intelephense(Ben Mewburn)</b><br>
+
+
+
+
+
+                <b>VUE EXTENSION(BACKUP)</b><br> --------------------------------------------- <br>
+                <b>Vue VSCode Snippets(sarah.drasner)</b><br>
+                <b>Vue Peek(Dario Duzinato)</b><br>
+                <b>vue(jcbuisson)</b><br>
+                <b>Vetur(Pine Wu)</b><br><br>
+
+                <b>VSCode Shortcut</b><br> --------------------------------------------- <br>
+                <b>Alt+Tab = অন্য এপ এ চলে যাবে</b><br>
+                <b>Ctrl+` = টার্মিনাল ওপেন হবে </b><br>
+                <b>Ctrl+f = একি পেজ এর শব্দ সার্চ</b><br>
+                <b>Ctrl+p = একি প্রোজেক্ট এর ফাইল সার্চ</b><br>
+
+            </p>
+            <hr>
+        </div>
+
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>এখন জ্যাংগো প্রধান টিউটোরিয়াল শুরু </b></h4>
+            <hr>
+            <p>
+                জ্যাংগো রান করতে হলে কমান্ড
+                <br><b>py manage.py runserver</b><br><br> এরপরে জ্যাংগো এপ তৈরি করতে হবে। প্রতিটা মডিউল এর জন্য আলাদা এপ
+                খুব ভালো কাজের। এপ তৈরির কমান্ড।
+                <br><b>py manage.py startapp basics</b><br><br>
+
+                <br>এখন যেখানে এই এপ ফোল্ডার থাকবে সেখানে দুইটা ফোল্ডার লাগবে। templates নামের ফোল্ডার এ এপ এর নামের
+                একটি ফোল্ডার থাকবে যেখানে সকল html ফাইল গুলো থাকবে। যে ফাইলটি এখন রান হচ্ছে এইটা হচ্ছে
+                <br> <b>templates>basics>starter.html</b><br> এখন একটা বেজ এইচটিএম এল ফাইল থাকবে যেখানে যে কোড লেখা
+                থাকবে তা সকল পেইজ এই থাকবে যাতে কম লেখে বেশি কাজ করা যায়। একটি ন্যাভ দিয়েও রাখবো যেখানে ন্যাভবার থাকবে।
+                <br>একই জায়গায় sattic নামে ফোল্ডার থাকবে যেখানে সকল static files যেমন css, js, image থাকবে।
+                <br>
+                <b>এখন সবগুলো আগে রেজিস্টার করে আসতে হবে মেইন প্রোজেক্ট এ তাহলে সব ঠিক মতো কাজ করবে </b>
+                <br>
+                <b>DJBangla > settings.py ></b><br> এখানে BASE_DIR এর নিচে রেজিস্টার করা লাগবে।<br>
+
+                <b><code>TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates') <br>
+                    STATIC_DIR = os.path.join(BASE_DIR, 'static')</code></b>
+                <br><br> এরপর INSTALLED_APPS =[] এর মধ্যে যে এপ তৈরি করা হয়েছে তার নাম
+                <br><br><code><b>'basics',</b><br> এর পরে TEMPLATES এর মধ্যে
+                <br><b> 'DIRS': [TEMPLATES_DIR,],</b></code><br><br> এরপরে একদম নিচে BASE_URL এর নিচে
+                <br><code><b>STATICFILES_DIRS = [<br>
+                    STATIC_DIR,<br>
+                ]</b></code><br><br>
+
+ 
+                <br><b>এখন এই starter.html পেজ টা রান করার জন্য যা যা করা হয়েছে (Model View Template Design Pattern কি
+                    এইটা এইখানকার মেইন টপিক না। যেহেতু জ্যাংগো শিখতেছেন ধরে নেব আপনি এইটা জানেন। না জানলে অনেক সমস্যা।
+                    দুইটা কাজ করা যেতে পারে। জাভাতে এইটা শিখতে পারেন। বা ইউটিউব থেকে কনসেপ্ট বুঝে নিতে পারেন বা এখানে
+                    কাজ করতে করতে প্রাক্টিক্যালি বুঝে নিতে পারেন) এখন নিচের ফাইল এ ওই কোড টুকু লেখেন... </b>
+                <br><br>DJBangla>urls.py> <br><b>
+                    <code>from django.contrib import admin  <br>
+                from django.urls import path, include (ইনক্লুড এর কাজ করার জন্যে )<br><br>
+
+                urlpatterns = [<br>
+                    path('admin/', admin.site.urls),<br>
+                    path('', include('basics.urls')), <br>
+                ]</code></b><br>(basics folder এ যে urls.py তা এখানে কানেকশন দিয়ে দিলাম )<br>
+                <br>
+                <b>basics folder এ নতুন ফাইল বানান urls.py লিখে তার মধ্যে যে কোড টুকু লেখা লাগবে </b><br>
+                <b><code>from django.contrib import admin <br>
+                    from django.urls import path<br>
+                    from basics import views<br><br>
+                    
+                    urlpatterns = [<br>
+                        path('',views.starter, name="starter"), <br>
+                    ]</code><br>(এই name="starter" নাম টা দিয়ে আমরা html page এ এই ভিউ কে চিনবো আর views.starter মানে
+                    হচ্ছে views এর starter ফাঙ্গশন টা কল হয়েছে)
+                </b><br><br>
+
+                <br><b>এখন basics>views.py এর মধ্যে সকল ভিউ ফাঙ্গশন লেখা লাগবে</b><br>
+                <b><code>
+                    def starter(request): <br>
+                        diction = {}<br>
+                        return render(request, 'basics/starter.html', context = diction)<br><br>
+                </code></b><br><br> পাইথন এর জ্যাংগো টেম্পলেট গুলো এখানে সাপর্ট করবে না। তাই জ্যাংগো টেম্পলেট কিভাবে
+                ডিক্লেয়ার করতে হয় তা গুগল করতে পারেন।
+                <br> "{" এর পরে "%" এবং "%" এর পরে "}"<br> দিয়ে ক্লোজ হবে এর মধ্যে যা কিছু লিখবেন সবই জ্যাংগো
+                টেম্পলেট<br><br>
+
+                <b>base.html</b>এর মধ্যে সম্পুর্ন সাইট থাকবে এবং প্রতি পেজ এ একে এক্সটেন্ড করে সব পেজ এ এই বেজ টা পাবো।
+                <br>সবার ওপরে আগে static files গুলো লোড করে নিতে হবে জ্যাংগো টেম্পলেট এর মধ্যে<br>
+                <code>load static</code><br> এখন <code>block</code> এর মধ্যে বেজ পেজ এ ফাকা রেখে দেবো এবং পরবপ্ররতি যে
+                পেজ এ এর মধ্যে যা লিখবো সেই পেজ এ বেজ এর মধ্যে এইটা থাকবে। আচ্ছা বোঝার দরকার নাই দেখলে হবে। আর static
+                files(css,js,img) কিভাবে লিংক
+                করবো ?
+                <br><code>static 'css/bootstrap4.5.css<br>
+                    static 'css/basestyle.css'<br>
+                </code><br>
+                <b>icon সেট করার জন্যে </b><br>
+                <b><code> link tag এর মধ্যে rel="icon" href="   static "img/logo.png"   type="image/png"</code></b><br><br>
+                <b>টাইটেল প্রতিপেজ এ পরিবর্তন করার জন্যে title tag এর মধ্যে </b>
+                <br><b><code> block title <br>
+    
+                    endblock title </code></b>
+
+                <br> এখন অন্য পেজ এ যেয়ে এই বেজ এক্সটেন্ড করে এর মধ্যে শুধু এই ব্লক এর মধ্যে টাইটেল টা লিখে দিলেই হয়ে
+                গেলো।<br><br>
+                <br><b>এখন body প্রতিপেজ এ পরিবর্তন করার জন্যে body tag এর মধ্যে nav block ব্লক এর মধ্যে nav এড করতেও
+                    পারি নাও করতে পারি। আবার এখানেই nav রেখে দেয়া যায়। কিন্তু যেহেতু রিয়াল লাইফ সবকিছু তাই এই প্রসেজ টা
+                    কাজে লাগবে তাই রেখে দিলাম </b><br>
+                <code>
+                    block nav <br>
+        
+                    endblock nav<br><br>
+                   
+               
+               
+                    block body<br>
+                       
+                   endblock body<br>
+                 </code>
+
+
+                <br><br>
+                <b>কাজ প্রায় শেষ এখন শুধু starter.html Page এ এক্সটেন্ড আর ইনক্লুড করলেই হয়ে যাবে</b>
+                <br>
+                <b><code>
+                    extends 'base.html' <br>
+                    include 'basics/navbar.html'
+                </code></b><br><br><br>
+
+                <b>এতোটুকু করতে পারলে আশা করা যায় আপনি অনেকদুর শিখে ফেলেছেন। 
+                    আর হয়তো এভাবে বুঝানোর প্রয়োজন নাই। কোড দেখেই বুঝতে পারবেন।
+                    এখন স্পেশাল কোড আর কমান্ড গুলোই শুধু পেইজ গুলোতে দেখতে পাবেন। বাকি সবকিছু 
+                    এই প্রোজেক্ট কোড এ দেখবেন। ভিন্ন ভিন্ন কাজের জন্য ভিন্ন ভিন্ন এপ বানিয়ে একই প্রোজেক্ট এ 
+                    যুক্ত করা হবে। এখানেই শেষ করলাম... 
+                </b>
+
+
+
+
+            </p>
+            <hr>
+        </div>
+
+
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>সকল প্রোজেক্ট</b></h4>
+            <hr>
+            <div class="projectnav">
+                <a href="{% url 'crudsearch' %}">C R U D With Validation and Search</a>
+            </div>
+
+            <div class="projectnav">
+                <a href="#">LIVE C R U D With Validation and Search</a>
+            </div>
+
+            <div class="projectnav">
+                <a href="#">LIVE C R U D With Validation and LIVE Search</a>
+            </div>
+
+            <div class="projectnav">
+                <a href="#">IMAGE C R U D With Validation</a>
+            </div>
+
+            <div class="projectnav">
+                <a href="#">Custom Signup And Login with Session and Protect Views</a>
+            </div>
+
+            
+
+            <div class="projectnav">
+                <a href="#">Custom Signup And Login with Session and Profile Photo and Protect Views</a>
+            </div>
+
+            <div class="projectnav">
+                <a href="#">Role Base Signup And Login with Session and Protect Views</a>
+            </div>
+
+            <div class="projectnav">
+                <a href="#">Multiple Login with Session and Protect Views</a>
+            </div>
+
+            <div class="projectnav">
+                <a href="#">Add to Cart Ecommerce</a>
+            </div>
+
+            
+
+
+            
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+</section>
+
+
+
+
+
+
+{% endblock body %}
+
+
+{% block scripts %}
+
+{% endblock scripts %}
