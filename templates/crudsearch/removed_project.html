@@ -6,104 +6,18 @@
 {% endblock title %}
 
 
-{% block extracsscdn %}
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-{% endblock extracsscdn %}
-    
     
 
 
 
-{% block homeactive %}
+{% block removedactive %}
     active
-{% endblock homeactive %}
+{% endblock removedactive %}
     
 
 {% block body %}
         
-<div class="container pt-3">
-
-
-    <div class="card mycard">
-        <div class="card-header mycardheader">
-            <h5>ADD NEW PROJECT</h5>
-        </div>
-
-
-        <form method="POST">
-            {% csrf_token %}
-
-        <div class="card-body">
-
-            {% if myform.errors.project_name %}
-                    <div class="alert alert-danger">
-                        <h5 class="my_alert_danger">{{myform.errors.project_name}}</h5>
-                    </div>
-            {% endif %}
-            
-                
-        
-
-
-
-
-            <div class="row">
-
-                <div class="col-md-6 col-sm-12">
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-3 col-form-label">Project Name</label>
-                        <div class="col-sm-12 col-md-9">
-                            <input type="text" class="form-control" name="project_name" placeholder="Enter Project Name" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-3 col-form-label">Project By</label>
-                        <div class="col-sm-12 col-md-9">
-                            <select class="form-control select2 select2-info" style="width: 100%;" name="student" required>
-                                <option  value="">Select Student</option>
-                                
-                                {% for student in student %}
-                                <option value="{{student.id}}">{{ student.student_id }} - {{student.name}}</option>
-                                {% endfor %}
-                                    
-                                </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-sm-12">
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-3 col-form-label">Project Details</label>
-                        <div class="col-sm-12 col-md-9">
-                            <textarea name="project_details" name="project_details" class="form-control" cols="30" rows="3" placeholder="Enter Project Details" required></textarea>
-                            
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-3 col-form-label"></label>
-                        <div class="col-sm-12 col-md-9 text-right">
-                           <button class="btn mybtn">Submit</button>
-                            <span><input type="reset" class="btn btn-warning text-white ml-2" value="Reset"> </span>
-                            
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-
-
-
-                
-        
-    </form>
-
-    </div>
-</div>
-
+<div class="container p-2">
 
     
 
@@ -111,7 +25,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="card mt-3 mb-2">
                 <div class="card-header mycardheader1">
-                    <h5 class="text-center">All Projects</h5>
+                    <h5 class="text-center">All Removed Projects</h5>
                 </div>
             </div>
 
@@ -129,9 +43,6 @@
             
             {% for project in project %}
 
-            <!-- {% if 0 == project.project_status %} -->
-            <!-- {% endif %} -->
-
             <div class="col-md-6 col-sm-6 mt-3">
 
             <div class="card ">
@@ -142,20 +53,18 @@
                     {{project.project_details}}
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-info text-white">Edit</a>
-                    <!-- <button class="btn btn-info text-white">Edit</button> -->
+
                     <span>
                         <form action="{% url 'crudsearch_remove_project' project.id %}" method="POST" class="d-inline">
                             {% csrf_token %}
-                            <input type="number" value="1" name="project_status" class="hide">
-                            <button class="btn btn-warning text-white ml-2">Remove</button>
+                            <input type="number" value="0" name="project_status" class="hide">
+                            <button class="btn btn-warning text-white ml-2">Move From Here</button>
                         </form>
                     </span>
                     <span>
-                        <form action="{% url 'crudsearch_delete_project' project.id %}" method="POST" class="d-inline">
+                        <form action="{% url 'crudsearch_removed_delete_project' project.id %}" method="POST" class="d-inline">
                             {% csrf_token %}
                             <button class="btn btn-danger ml-2">Delete</button>
-
                         </form>
                     </span>
                 </div>
@@ -176,7 +85,7 @@
     
     {% if 1 == activeprojects %}
     <div class="alert alert-warning m-1 text-center">
-        <h5>You removed all data.</h5>
+        <h5>You didn't removed any data. Go to home.</h5>
     </div>
 
     {% endif %}
@@ -243,8 +152,7 @@
 
 
 
-
-    
+    </div>
 
 
 
@@ -252,24 +160,10 @@
 {% endblock body %}
     
 
-{% block extrajscdn %}
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    
-{% endblock extrajscdn %}
-    
 
 
 {% block scripts %}
-    <script>
-        $(function() {
-            //Initialize Select2 Elements
-            $('.select2').select2()
-                //Initialize Select2 Elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
-        });
-    </script>
+
     <script>
     // Form Resubmission Stop Query 
         $(document).ready(function(){

@@ -30,10 +30,25 @@
         </div>
 
 
-        <form action="{% url 'crudsearch_add_student' %}" method="POST">
+        <form method="POST">
             {% csrf_token %}
 
         <div class="card-body">
+
+
+            {% if myform.errors.phone %}
+                    <div class="alert alert-danger">
+                        <h5 class="my_alert_danger">{{myform.errors.phone}}</h5>
+                    </div>
+            {% endif %}
+
+            {% if myform.errors.student_id %}
+                    <div class="alert alert-danger">
+                        <h5 class="my_alert_danger">{{myform.errors.student_id}}</h5>
+                    </div>
+            {% endif %}
+
+
             <div class="row">
 
                 <div class="col-md-6 col-sm-12">
@@ -83,6 +98,13 @@
                     <h5 class="text-center">All Students</h5>
                 </div>
             </div>
+
+            {% for message in messages %}
+                        <div class="alert alert-success m-2"><p>{{message}}</p></div>
+            {% endfor %}
+
+
+
         </div>
     </div>
 
@@ -99,10 +121,17 @@
                 </div>
                 <div class="card-body">
                     ID: {{student.student_id}}
+                    <br>
+                    PHONE: {{ student.phone }}
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-warning text-white">Edit</button>
-                    <span><button class="btn btn-danger ml-2">Delete</button></span>
+                    <span>
+                        <form action="{% url 'crudsearch_delete_student' student.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <button class="btn btn-danger ml-2">Delete</button>
+                        </form>
+                    </span>
                 </div>
             </div>
         </div>

@@ -1,65 +1,77 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 :root {
-    --roboto: "Roboto", sans-serif;
-    --engfont: "Raleway", sans-serif;
-    --banglafont: "Hind Siliguri", sans-serif;
-    --bg: #5cdb94;
-    --darkcolor: #05396b;
-    --lightcolor: #edf5e0;
-    --btn: #389583;
-    --btnhover: #edf5e0;
-    --dj: #0c4b33;
-    --djlite:#4d7b69;
-  }
+  --roboto: "Roboto", sans-serif;
+  --engfont: "Raleway", sans-serif;
+  --banglafont: "Hind Siliguri", sans-serif;
+  --bg: #5cdb94;
+  --darkcolor: #05396b;
+  --lightcolor: #edf5e0;
+  --btn: #389583;
+  --btnhover: #edf5e0;
+  --dj: #0c4b33;
+  --djlite: #4d7b69;
+}
 
-.mynav{
-    background: var(--darkcolor);
+.mynav {
+  background: var(--darkcolor);
 }
 .mybrand {
-    font-family: var(--roboto);
-    font-weight: 600;
-    font-size: 1.3rem;
-    letter-spacing: 0.05rem;
+  font-family: var(--roboto);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 0.05rem;
 }
-.mycardheader{
-    background: var(--djlite) !important;
-    background-color: var(--djlite) !important;
-    color: white;
+.mycardheader {
+  background: var(--djlite) !important;
+  background-color: var(--djlite) !important;
+  color: white;
 }
- h5{
-    margin: 0;
+h5 {
+  margin: 0;
 }
-.mycard{
-    box-shadow: -2px 2px 5px -1px rgba(0,0,0,.11);
+.mycard {
+  box-shadow: -2px 2px 5px -1px rgba(0, 0, 0, 0.11);
 }
 .mycardheader1 {
-    background: var(--lightcolor);
-    color: var(--darkcolor);
+  background: var(--lightcolor);
+  color: var(--darkcolor);
 }
 .select2-container .select2-selection--single {
-    box-sizing: border-box;
-    cursor: pointer;
-    display: block;
-    height: auto;
-    padding: 0.3rem 0rem !important;
-    user-select: none;
-    -webkit-user-select: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  height: auto;
+  padding: 0.3rem 0rem !important;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.mybtn{
-    background: var(--btn);
-    color: white;
+.mybtn {
+  background: var(--btn);
+  color: white;
 }
-.mybtn:hover{
-    background: var(--bg);
-    color: white;
-    transition: all ease-in-out 0.3s;
+.mybtn:hover {
+  background: var(--bg);
+  color: white;
+  transition: all ease-in-out 0.3s;
 }
-.myspan{
-    color: var(--btn);
-    font-size: 1rem;
-    font-weight: 200;
+.myspan {
+  color: var(--btn);
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+.my_alert_danger {
+  margin: 0px;
+  list-style: none;
+}
+.my_alert_danger li {
+  list-style: none !important;
+  margin: 0px;
+}
+.hide {
+  display: none;
 }
