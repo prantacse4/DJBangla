@@ -28,3 +28,14 @@ class ProjectRegistrationRemoved(forms.ModelForm):
         model = Project
         fields = ['project_status']
 
+
+class StudentUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ['name']
+
+
+class ProjectUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['project_details']

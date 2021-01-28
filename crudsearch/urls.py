@@ -10,6 +10,11 @@ urlpatterns = [
     path('crudsearch_remove_project/<int:id>/',views.crudsearch_remove_project, name="crudsearch_remove_project"),
     path('crudsearch_removed/',views.crudsearch_removed, name="crudsearch_removed"),
     path('crudsearch_removed_delete_project/<int:id>/',views.crudsearch_removed_delete_project, name="crudsearch_removed_delete_project"),
+    path('search/',views.crudsearch_page, name="crudsearch_page"),
+
+    path('student_edit/<int:id>/',views.crudsearch_student_edit, name="crudsearch_student_edit"),
+    path('project_edit/<int:id>/',views.crudsearch_project_edit, name="crudsearch_project_edit"),
+
 
 
 

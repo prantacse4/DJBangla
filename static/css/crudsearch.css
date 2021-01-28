@@ -75,3 +75,72 @@ h5 {
 .hide {
   display: none;
 }
+
+.my_searchdiv{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.searchdiv1{
+  flex: 88%;
+
+}
+.searchdiv2 {
+  flex: 12%;
+  text-align: end;
+}
+.searchdiv1 input{
+  width: 100%;
+}
+.searchdiv2 button{
+  min-width: 7rem !important;
+}
+.resultcount {
+  margin: 0;
+  color: #ced4da;
+  padding-left: .8rem;
+  font-size: 1rem;
+}
+.searchfor {
+  border: 1px solid #ced4da;
+  padding: .8rem;
+  border-radius: 1rem;
+}
+.searchfor p{
+  font-size: 1rem;
+
+}
+.resultcard {
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.resultcard h5{
+  font-size: 1.1rem;
+}
+.resultcard span{
+  font-size: .9rem;
+}
+.resultcardbody {
+  padding: 0.8rem;
+  font-size: 1rem;
+}
+.resultcardfooter{
+  padding: .3rem 0.8rem;
+background-color: rgba(0,0,0,.03);
+border-top: 1px solid rgba(0,0,0,.125);
+
+}
+.resultcardfooter button{
+  padding: 0.2rem 1.4rem;
+}
+.resultcardfooter a{
+  padding: 0.2rem 1.4rem;
+  
+}
+.scard:hover{
+  box-shadow: -2px 2px 8px 1px rgba(0,0,0,.11);
+}

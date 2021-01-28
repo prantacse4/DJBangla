@@ -1,0 +1,95 @@
+{% extends 'crudsearch/base.html' %}
+
+
+{% block title %}
+    PROJECTS | DJ
+{% endblock title %}
+
+
+    
+
+
+
+{% block homeactive %}
+    active
+{% endblock homeactive %}
+    
+
+{% block body %}
+        
+<div class="container p-2">
+
+    
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card mt-3 mb-2">
+                <div class="card-header mycardheader1">
+                    <h5 class="text-center">Edit Project Details</h5>
+                </div>
+            </div>
+
+            {% for message in messages %}
+                        <div class="alert alert-success m-2"><p>{{message}}</p></div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header mycardheader">
+            <h5>{{result.project_name}}</h5>
+        </div>
+        <div class="card-body">
+
+
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Project Details</label>
+                    <textarea name="project_details" name="project_details" class="form-control" cols="30" rows="3" placeholder="Enter Project Details" required>{{ result.project_details }}</textarea>
+
+                    <label class="mt-3">Developed By</label>
+                    <input type="text" class="form-control mb-4"  value="{{ result.student.name }} ({{ result.student.student_id }})" readonly>
+
+            
+                    <button class="btn btn-primary">Update</button><span>
+                        <a href="{% url 'crudsearch' %}" class="btn btn-info">Cancel</a>
+                    </span>
+
+                </div>
+        </form>
+        </div>
+    </div>
+
+
+
+        <br><br>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+{% endblock body %}
+    
+
+
+
+{% block scripts %}
+
+    <script>
+    // Form Resubmission Stop Query 
+        $(document).ready(function(){
+        window.history.replaceState('','',window.location.href)
+        });
+ </script>
+{% endblock scripts %}
+    

@@ -1,0 +1,97 @@
+{% extends 'crudsearch/base.html' %}
+
+
+{% block title %}
+    PROJECTS | DJ
+{% endblock title %}
+
+
+    
+
+
+
+{% block studentactive %}
+    active
+{% endblock studentactive %}
+    
+
+{% block body %}
+        
+<div class="container p-2">
+
+    
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="card mt-3 mb-2">
+                <div class="card-header mycardheader1">
+                    <h5 class="text-center">Edit Student Details</h5>
+                </div>
+            </div>
+
+            {% for message in messages %}
+                        <div class="alert alert-success m-2"><p>{{message}}</p></div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header mycardheader">
+            <h5>{{result.name}}</h5>
+        </div>
+        <div class="card-body">
+
+
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Name" value="{{ result.name }}">
+
+                    <label class="mt-3">Student ID</label>
+                    <input type="text" class="form-control"  value="{{ result.student_id }}" readonly>
+
+                    <label class="mt-3">Phone</label>
+                    <input type="text" class="form-control mb-3"  placeholder="Phone" value="{{ result.phone }}" readonly>
+
+                    <button class="btn btn-primary">Update</button><span>
+                        <a href="{% url 'crudsearch_student' %}" class="btn btn-info">Cancel</a>
+                    </span>
+
+                </div>
+        </form>
+        </div>
+    </div>
+
+
+
+        <br><br>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+{% endblock body %}
+    
+
+
+
+{% block scripts %}
+
+    <script>
+    // Form Resubmission Stop Query 
+        $(document).ready(function(){
+        window.history.replaceState('','',window.location.href)
+        });
+ </script>
+{% endblock scripts %}
+    

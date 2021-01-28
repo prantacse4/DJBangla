@@ -136,14 +136,13 @@
 
             <div class="card ">
                 <div class="card-header">
-                    <h5><a href="#" >{{project.project_name}}</a><span class="myspan"> by {{project.student.name}}({{project.student}})</span></h5>
+                    <h5><a href="{% url 'crudsearch_project_edit' project.id %}" >{{project.project_name}}</a><span class="myspan"> by {{project.student.name}}({{project.student}})</span></h5>
                 </div>
                 <div class="card-body">
                     {{project.project_details}}
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-info text-white">Edit</a>
-                    <!-- <button class="btn btn-info text-white">Edit</button> -->
+                    <a href="{% url 'crudsearch_project_edit' project.id %}" class="btn btn-info text-white">Edit</a>
                     <span>
                         <form action="{% url 'crudsearch_remove_project' project.id %}" method="POST" class="d-inline">
                             {% csrf_token %}
@@ -155,7 +154,6 @@
                         <form action="{% url 'crudsearch_delete_project' project.id %}" method="POST" class="d-inline">
                             {% csrf_token %}
                             <button class="btn btn-danger ml-2">Delete</button>
-
                         </form>
                     </span>
                 </div>

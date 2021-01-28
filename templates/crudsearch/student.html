@@ -125,7 +125,7 @@
                     PHONE: {{ student.phone }}
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-warning text-white">Edit</button>
+                    <a href="{% url 'crudsearch_student_edit' student.id %}" class="btn btn-warning text-white">Edit</a>
                     <span>
                         <form action="{% url 'crudsearch_delete_student' student.id %}" method="POST" class="d-inline">
                             {% csrf_token %}

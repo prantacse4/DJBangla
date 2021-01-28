@@ -3,6 +3,9 @@ from .models import *
 from .forms import StudentRegistration
 from .forms import ProjectRegistration
 from .forms import ProjectRegistrationRemoved
+from .forms import StudentUpdateForm
+from .forms import ProjectUpdateForm
+from django.db.models import Q
 
 from  django.contrib import messages
 from django.db.models import Count
@@ -172,3 +175,44 @@ def crudsearch_removed_delete_project(request, id):
         delete_id.delete()
         messages.success(request, 'Project deleted successfully')
         return HttpResponseRedirect('/crudsearch/crudsearch_removed/')
+
+
+def crudsearch_page(request):
+    givenSearch = request.GET['crudsearch']
+    projectsearchResult = Project.objects.filter(Q(project_name__icontains=givenSearch ) | Q(project_details__icontains=givenSearch) )
+    studentsearchResult = Student.objects.filter(Q(name__icontains=givenSearch ) )
+    res_count = projectsearchResult.count()+studentsearchResult.count()
+
+
+    diction = {'givenSearch':givenSearch, 'projectsearchResult':projectsearchResult, 'res_count':res_count, 'studentsearchResult':studentsearchResult}
+    return render(request, 'crudsearch/crudsearch.html', context = diction)
+
+
+def crudsearch_student_edit(request, id):
+    result = Student.objects.get(pk=id)
+    diction = {'result':result}
+    string_id = str(id)
+    if request.method=='POST':
+        u_id = Student.objects.get(pk=id)
+        myform = StudentUpdateForm(request.POST, instance=u_id)
+        if myform.is_valid():
+            myform.save(commit=True)
+            messages.success(request, 'Student updated successfully')
+            return HttpResponseRedirect('/crudsearch/student_edit/'+string_id+'/')
+
+    return render(request, 'crudsearch/student_edit.html', context=diction)
+
+
+def crudsearch_project_edit(request, id):
+    result = Project.objects.get(pk=id)
+    diction = {'result':result}
+    string_id = str(id)
+    if request.method=='POST':
+        u_id = Project.objects.get(pk=id)
+        myform = ProjectUpdateForm(request.POST, instance=u_id)
+        if myform.is_valid():
+            myform.save(commit=True)
+            messages.success(request, 'Project updated successfully')
+            return HttpResponseRedirect('/crudsearch/project_edit/'+string_id+'/')
+
+    return render(request, 'crudsearch/project_edit.html', context=diction)
