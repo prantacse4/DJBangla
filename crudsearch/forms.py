@@ -25,7 +25,7 @@ class ProjectRegistration(forms.ModelForm):
 
 class ProjectRegistrationRemoved(forms.ModelForm):
     class Meta:
-        model = Project
+        model = Project 
         fields = ['project_status']
 
 
