@@ -1,0 +1,50 @@
+{% extends 'multiauth/base.html' %}
+
+
+{% block title %}
+    PROJECTS | MULTIAUTH
+{% endblock title %}
+
+
+    
+    
+
+
+
+{% block homeactive %}
+    active
+{% endblock homeactive %}
+    
+
+{% block body %}
+
+<div class="mysection">
+    <div class="container">
+        <div class="myuserpage">
+            <a href="{% url 'multiauth_student' %}" class="btn">Student</a>
+        </div>
+        <div class="myuserpage">
+            <a href="{% url 'multiauth_teacher' %}" class="btn">Teacher</a>
+        </div>
+    </div>
+</div>
+
+
+
+    
+
+{% endblock body %}
+
+    
+
+
+{% block scripts %}
+
+    <script>
+    // Form Resubmission Stop Query 
+        $(document).ready(function(){
+        window.history.replaceState('','',window.location.href)
+        });
+ </script>
+{% endblock scripts %}
+    

@@ -1,0 +1,140 @@
+{% extends 'multiauth/base.html' %}
+
+
+{% block title %}
+    PROJECTS | MULTIAUTH
+{% endblock title %}
+
+
+    
+    
+
+
+
+{% block teacheractive %}
+    active
+{% endblock teacheractive %}
+    
+
+{% block body %}
+
+
+<div class="container">
+    <div class="id_my_details">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="text-center">{{user.username}} Details (
+                {% if user.is_teacher %}
+                    Teacher
+                {% endif %}
+                    )</h5>
+            </div>
+            <div class="card-body">
+                <label>Name</label>
+                <input type="text" class="form-control mb-3" required  value="{{ user.first_name }} {{ user.last_name }}" placeholder="Example" >
+
+                <label>User Name</label>
+                <input type="text" class="form-control mb-3" required  value="{{ user.username }}" placeholder="Example" >
+
+                <label>Designation</label>
+                <input type="text" class="form-control mb-3" required  value="{{ user.teacher.designation }}" placeholder="Example" >
+
+                <button class="btn btn-info">Update</button>
+            </div>
+        </div>
+    </div>
+    <div class="others_id mt-3">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <h5>Name</h5>
+                    </div>
+                    <div class="card-body">
+                        Details
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <h5>Name</h5>
+                    </div>
+                    <div class="card-body">
+                        Details
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    
+
+
+
+
+    <br><br>
+
+        <!-- --------------------------------------------- -->
+            <!-- PAGINATION -->
+        <!-- --------------------------------------------- -->
+        <!-- {% if project.paginator.num_pages > 1 %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if project.paginator.num_pages != 1 %}
+                    <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">First</a></li>
+                {% endif %}
+                {% if project.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ project.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                {% endif %}
+                {% for i in project.paginator.page_range %}
+                    {% if project.number == i %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+                    {% elif project.number > i|add:"-5" and project.number < i|add:"+5"%}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if project.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ project.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                {% endif %}
+                {% if project.paginator.num_pages != project.number %}
+                    <li class="page-item"><a class="page-link" href="?page={{ project.paginator.num_pages }}">Last</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Last</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %} -->
+                <!-- --------------------------------------------- -->
+            <!-- PAGINATION -->
+        <!-- --------------------------------------------- -->
+            
+
+
+
+
+{% endblock body %}
+
+    
+
+
+{% block scripts %}
+
+    <script>
+    // Form Resubmission Stop Query 
+        $(document).ready(function(){
+        window.history.replaceState('','',window.location.href)
+        });
+ </script>
+{% endblock scripts %}
+    

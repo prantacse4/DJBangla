@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block extracsscdn %}
+    <link rel="stylesheet" href="{% static 'css/multiauth.css' %}">
+{% endblock extracsscdn %}
+    
+{% block title %}
+    DJ | MULTIAUTH
+{% endblock title %}
+    
+{% block body %}
+    
+<section>
+    <div class="authenticationpage">
+        <div class="form-group card card-body mycardlogin">
+            <h5 class="card-header text-center">রেজিস্টার করুন </h5>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ myform.as_p }}
+                <button class="btn btn-primary">Submit</button>
+            </form>
+
+            <!-- <form action="" method="POST">
+                {% csrf_token %}                    
+                    {% if myform.errors.username %}
+                    <div class="alert alert-danger">
+                        <h5>{{myform.errors.username}}</h5>
+                    </div>
+                    {% endif %}
+                    {% if myform.errors.email %}
+                    <div class="alert alert-danger">
+                        <h5>{{myform.errors.email}}</h5>
+                    </div>
+                    {% endif %}
+                    {% if myform.errors.password1 %}
+                    <div class="alert alert-danger">
+                        <h5>{{myform.errors.password1}}</h5>
+                    </div>
+                    {% endif %}
+                    {% if myform.errors.password2 %}
+                    <div class="alert alert-danger">
+                        <h5>{{myform.errors.password2}}</h5>
+                    </div>
+                    {% endif %}
+                        
+
+                <label class="mt-3">ইউজার নেম(একক)</label> 
+                <input type="text" class="form-control" name="username" placeholder="Create Username">
+
+                <label class="mt-3">ইমেইল</label> 
+                <input type="email" class="form-control" name="email" placeholder="xyz@email.com"> 
+
+                <label class="mt-3">পাসওয়ার্ড</label>
+                <input type="password" class="form-control" name="password1" placeholder="Password"> 
+
+                <label class="mt-3">পাসওয়ার্ড(কনফর্ম)</label>
+                <input type="password" class="form-control" name="password2" placeholder="Re-enter Password"> 
+
+                <button class="btn btn-success mt-3">রেজিস্টার</button><span><a href="{% url 'multiauth_login' %}" class="btn btn-info mt-3 ml-2">লগিন</a></span>
+            </form> -->
+
+
+
+
+            <br><a href="{% url 'multiauth' %}">Home</a>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock body %}
+
+
+
+
+
+
+{% block script %}
+
+{% endblock script %}

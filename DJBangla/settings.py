@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL = 'multiauth.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +42,9 @@ INSTALLED_APPS = [
     'basics',
     'crudsearch',
     'livecrudsearch',
+    'imagecrud',
+    'multiauth',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
@@ -109,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
@@ -126,3 +130,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = STATIC_DIR+'/media'

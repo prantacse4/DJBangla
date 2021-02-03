@@ -1,0 +1,72 @@
+{% extends 'imagecrud/base.html' %}
+
+
+{% block title %}
+    PROJECTS | DJ | IMAGE
+{% endblock title %}
+
+
+    
+    
+
+
+
+{% block homeactive %}
+    active
+{% endblock homeactive %}
+    
+
+{% block body %}
+        
+<div class="container pt-3">
+<div class="card">
+    <div class="card-header mycardheader">
+        <h5>Update Image</h5>
+    </div>
+    <div class="card-body">
+        <img src="{{ img.image.url }}" alt="" height="auto" width="80%">
+        <br>
+        <small class="text-muted">{{img.date}}</small>
+
+
+
+        <form action="{% url 'crudimage_update' img.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                        <input type="file" class="form-control-file" name="image">
+                        <button class="btn btn-primary mt-3">Update and Delete Backup Image</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+    
+</div>
+
+
+
+
+
+
+
+
+    
+
+
+
+
+{% endblock body %}
+
+    
+
+
+{% block scripts %}
+
+    <script>
+    // Form Resubmission Stop Query 
+        $(document).ready(function(){
+        window.history.replaceState('','',window.location.href)
+        });
+ </script>
+{% endblock scripts %}
+    

@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* BanglaFont */
+  
+  @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
+  :root {
+    --roboto: "Roboto", sans-serif;
+    --engfont: "Raleway", sans-serif;
+    --banglafont: "Hind Siliguri", sans-serif;
+    --bg: #5cdb94;
+    --darkcolor: #05396b;
+    --lightcolor: #edf5e0;
+    --btn: #389583;
+    --btnhover: #edf5e0;
+    --dj: #0c4b33;
+  }
+.authenticationpage{
+    background:#2c3135 ;
+    height: 100vh;
+}
+.mycardlogin{
+    width:30rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.mysection{
+    background-color: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.myuserpage{
+    text-align: center;
+}
+.myuserpage a{
+    background-color: var(--darkcolor);
+    color: white;
+    margin: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1rem 20rem;
+    font-family: var(--engfont);
+    font-weight: 500;
+
+}
+.myuserpage a:hover{
+    background-color: var(--dj);
+    transition: all ease .3s;
+    color: white;
+}
+.mycentersec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.myprofile{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 1.2rem;
+}
+.profileimage {
+    position: relative;
+    top: -50px;
+    right: -10px;
+    flex: 70%;
+}
+.profileimage img {
+    box-shadow: -3px -2px 6px 3px rgba(0,0,0,.11);
+}
+.coverprofile{
+    height: 150px;
+    position: relative;
+    background-color: var(--bg);
+}
+.profiledetails {
+    flex: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.profiledetails p {
+    font-family: var(--engfont);
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+.profilename {
+    font-style: italic;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+}
+
+.profiledetails a{
+    padding: 0rem 0rem !important;
+width: 50%;
+}

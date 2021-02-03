@@ -15,6 +15,7 @@
     
 <link rel="stylesheet" href="{% static 'css/basestyle.css' %}">
 <link rel="stylesheet" href="{% static 'css/crudsearch.css' %}">
+<link rel="stylesheet" href="{% static 'css/multiauth.css' %}">
 <link rel="icon" href="{% static 'img/logo.png' %}" type="image/png" >
 <title>
 {% block title %}
@@ -40,51 +41,56 @@
                 
               {% endblock homeactive %} 
                 
-              " href="{% url 'crudsearch' %}">Home </a>
+              " href="{% url 'multiauth' %}">Home </a>
             </li>
             <li class="nav-item">
               <a class="nav-link 
               {% block studentactive %}
                   
               {% endblock studentactive %}
-                  " href="{% url 'crudsearch_student' %}">Student</a>
+                  " href="{% url 'multiauth_student' %}">Student</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link 
-                {% block removedactive %}
+                {% block teacheractive %}
                     
-                {% endblock removedactive %}
-                    " href="{% url 'crudsearch_removed' %}">Removed</a>
+                {% endblock teacheractive %}
+                    " href="{% url 'multiauth_teacher' %}">Teacher</a>
               </li>
+
+              
+              
+                
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 GoTo
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Crud</a>
+                <a class="dropdown-item" href="{% url 'crudsearch' %}">Crud</a>
                 <a class="dropdown-item" href="#">Live Crud</a>
-                <a class="dropdown-item" href="{% url 'imagecrud' %}">Image Crud</a>
+                <a class="dropdown-item" href="#">Image Crud</a>
                 <a class="dropdown-item" href="#">Authentication</a>
                 <a class="dropdown-item" href="#">Authentication(Profile)</a>
                 <a class="dropdown-item" href="#">Authentication(Role)</a>
                 <a class="dropdown-item" href="{% url 'multiauth' %}">Authentication(Multiple)</a>
+                <a class="dropdown-item" href="#">Authentication(Multiple)</a>
                 <a class="dropdown-item" href="#">Add To Cart</a>
               </div>
             </li>
+
             
           </ul>
-          <form method="GET" action="{% url 'crudsearch_page' %}" class="form-inline my-2 my-lg-0">
+
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'multiauth_logout' %}">Logout</a>
+              </li>
+              {% endif %}
             
-            {% if givenSearch  %}
-               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="crudsearch" value="{{ givenSearch }}" required>
-            {% else %}
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="crudsearch" required>
-              
-            {% endif %}
-              
-              
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          </ul>
+
         </div>
       </nav>
 

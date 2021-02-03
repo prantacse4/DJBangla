@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block extracsscdn %}
+    <link rel="stylesheet" href="{% static 'css/multiauth.css' %}">
+{% endblock extracsscdn %}
+    
+{% block title %}
+    DJ | MULTIAUTH
+{% endblock title %}
+    
+{% block body %}
+    
+<section>
+    <div class="authenticationpage mycentersec">
+        <h5 class="text-center text-white">You have no access to view this</h5>
+        
+        <a href="{% url 'multiauth' %}">Go to home</a>
+     </div>
+      
+</section>
+
+
+{% endblock body %}
+
+
+
+
+
+
+{% block script %}
+
+{% endblock script %}
