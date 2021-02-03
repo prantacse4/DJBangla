@@ -16,7 +16,7 @@
         <div class="authenticationpage">
             <div class="form-group card card-body mycardlogin">
                 <div class="card-header">
-                    <h5 class="text-center">লগিন করুন </h5>
+                    <h5 class="text-center">Login Please </h5>
 
                 </div>
                 
@@ -27,15 +27,15 @@
                         <div class="alert alert-warning"><p>{{message}}</p></div>
                     {% endfor %}
                         
-                    <label class="mt-3">ইউজার নেম</label> 
+                    <label class="mt-3">Username</label> 
                     <input type="text" class="form-control" name="username" placeholder="Username">
 
-                    <label class="mt-3">পাসওয়ার্ড</label>
+                    <label class="mt-3">Password</label>
                     <input type="password" class="form-control" name="password" placeholder="Password">
 
 
-                    <button class="btn btn-success mt-3">লগিন</button><span><a href="{% url 'multiauth_register_student' %}" class="btn btn-info mt-3 ml-2">Register (Student)</a></span><span><a href="{% url 'multiauth_register_teacher' %}" class="btn btn-info mt-3 ml-2">Register (Teacher)</a></span>
-                    <br><br><a href="https://web.facebook.com/angrypranta/" class="mt-5">পাসওয়ার্ড ভুলে গেছেন?</a>
+                    <button class="btn btn-success mt-3">Login</button><span><a href="{% url 'multiauth_register_student' %}" class="btn btn-info mt-3 ml-2">Register (Student)</a></span><span><a href="{% url 'multiauth_register_teacher' %}" class="btn btn-info mt-3 ml-2">Register (Teacher)</a></span>
+                    <br><br><a href="https://web.facebook.com/angrypranta/" class="mt-5">Forgot Password?</a>
                     <br><a href="{% url 'multiauth' %}">Home</a>
 
                 </form>

@@ -52,6 +52,14 @@ def multiauth_teacher(request):
     return render(request, 'multiauth/teacher.html', context=diction)
 
 def multiauth_register_student(request):
+    if request.user.is_authenticated:
+        if request.user.is_teacher == True:
+            return redirect('multiauth_teacher')
+        elif request.user.is_student == True:
+            return redirect('multiauth_student')
+        elif request.user.is_superuser == True:
+            return  HttpResponseRedirect('/admin')
+
     myform = StudentSignUpForm()
     if request.method == 'POST':
         myform = StudentSignUpForm(request.POST)
@@ -75,6 +83,7 @@ def update_student_profile_picture(request):
             myform = UserProfileForm(request.POST, request.FILES, instance=image)
             if myform.is_valid():
                 myform.save(commit=True)
+                messages.success(request, 'Profile picture updated')
                 return redirect('multiauth_student')
     else:
         if request.method=='POST':
@@ -84,7 +93,7 @@ def update_student_profile_picture(request):
                 image = myform.cleaned_data.get('image')
                 register = UserProfileImage(user = user, image=image)
                 register.save()
-                messages.success(request, user)
+                messages.success(request, 'Profile picture updated')
                 return redirect('multiauth_student')
 
 
@@ -103,6 +112,14 @@ def update_student_details(request):
 
 
 def multiauth_register_teacher(request):
+    if request.user.is_authenticated:
+        if request.user.is_teacher == True:
+            return redirect('multiauth_teacher')
+        elif request.user.is_student == True:
+            return redirect('multiauth_student')
+        elif request.user.is_superuser == True:
+            return  HttpResponseRedirect('/admin')
+
     myform = TeacherSignUpForm()
     if request.method == 'POST':
         myform = TeacherSignUpForm(request.POST)
@@ -120,6 +137,13 @@ def multiauth_register_teacher(request):
 
 
 def multiauth_login(request):
+    if request.user.is_authenticated:
+        if request.user.is_teacher == True:
+            return redirect('multiauth_teacher')
+        elif request.user.is_student == True:
+            return redirect('multiauth_student')
+        elif request.user.is_superuser == True:
+            return  HttpResponseRedirect('/admin')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -186,6 +210,7 @@ def delete_student_by_teacher(request,id):
     if request.method == 'POST':
         del_id = User.objects.get(pk=id)
         del_id.delete()
+        messages.info(request, 'Deleted Successfully! That student no longer able to login.')
         return redirect('teacher_view_student')
 
 
@@ -200,6 +225,7 @@ def update_teacher_profile_picture(request):
             myform = UserProfileForm(request.POST, request.FILES, instance=image)
             if myform.is_valid():
                 myform.save(commit=True)
+                messages.success(request, 'Profile picture updated')
                 return redirect('multiauth_teacher')
     else:
         if request.method=='POST':
@@ -209,7 +235,7 @@ def update_teacher_profile_picture(request):
                 image = myform.cleaned_data.get('image')
                 register = UserProfileImage(user = user, image=image)
                 register.save()
-                messages.success(request, user)
+                messages.success(request, 'Profile picture updated')
                 return redirect('multiauth_teacher')
 
 
@@ -226,7 +252,7 @@ def update_teacher_details(request):
             return redirect('multiauth_teacher')
 
 
-
+@login_required(login_url='multiauth_login')
 def multiauth_logout(request):
     logout(request)
     return redirect('multiauth_login')

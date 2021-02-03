@@ -19,14 +19,15 @@
   }
 .authenticationpage{
     background:#2c3135 ;
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .mycardlogin{
-    width:30rem;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width:40rem;
+    position: absolute;
+
 }
 .mysection{
     background-color: var(--bg);
