@@ -44,11 +44,22 @@
               " href="{% url 'multiauth' %}">Home </a>
             </li>
             <li class="nav-item">
+              
               <a class="nav-link 
-              {% block studentactive %}
-                  
-              {% endblock studentactive %}
-                  " href="{% url 'multiauth_student' %}">Student</a>
+                {% block studentactive %}
+                    
+                {% endblock studentactive %}
+                    " 
+                    href="
+                    {% if user.is_authenticated and user.is_teacher %}
+                    {% url 'teacher_view_student' %}
+                    {% else %}
+                    {% url 'multiauth_student' %}
+                    {% endif %}
+                      
+                    ">Student</a>
+                
+
             </li>
             <li class="nav-item">
                 <a class="nav-link 

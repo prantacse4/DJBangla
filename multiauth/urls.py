@@ -14,4 +14,11 @@ urlpatterns = [
     path('student/profile/picture',views.update_student_profile_picture, name="update_student_profile_picture"),
     path('student/profile/update',views.update_student_details, name="update_student_details"),
     path('student/profile/deleteAccount',views.delete_my_account, name="delete_my_account"),
+    path('teacher/view/student',views.teacher_view_student, name="teacher_view_student"),
+    path('teacher/delete/student/<int:id>/', views.delete_student_by_teacher, name="delete_student_by_teacher"),
+    path('teacher/profile/picture',views.update_teacher_profile_picture, name="update_teacher_profile_picture"),
+    path('teacher/profile/update',views.update_teacher_details, name="update_teacher_details"),
+
+
+
 ]

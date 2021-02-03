@@ -1,13 +1,13 @@
 {% extends 'multiauth/base.html' %}
 
-
+{% load static %}
 {% block title %}
     PROJECTS | MULTIAUTH
 {% endblock title %}
 
 
     
-    
+
 
 
 
@@ -20,53 +20,134 @@
 
 
 <div class="container">
+    <div class="card">
+        <div class="card-header"></div>
+        <div class="coverprofile">
+        </div>
+        <div class="myprofile">
+            <div class="profileimage">
+                {% if profile.image %}
+                    <img src="{{ profile.image.url }}" alt="profile" width="200" height="300" class="rounded mb-2 img-thumbnail">
+                {% else %}
+                    <img src="{% static 'img/logo.png' %}" alt="profile" width="200" height="300" class="rounded mb-2 img-thumbnail">
+                {% endif %}
+            </div>
+            <div class="profiledetails">
+                <p class="profilename">{{user.first_name}} {{user.last_name}}</p>
+                <p><strong>{{ user.teacher.designation }}</strong></p>
+                <p>Username: {{ user.username }} (
+                    
+                    {% if user.is_teacher %}
+                        Teacher
+                    {% endif %}
+                        
+                    )</p>
+                <p>Email: {{ user.email }}</p>
+                <p>User Since: {{user.date_joined}}</p>
+                <p>Last Login: {{user.last_login}}</p>
+
+                <form action="{% url 'delete_my_account' %}" method="POST" class="d-inline">
+                    {% csrf_token %}
+                    <button class="btn btn-danger">Delete My Account</button>
+                </form>
+            </div>
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
+</div> <br>
+
+
+{% for message in messages %}
+            <div class="alert alert-warning m-2"><p>{{message}}</p></div>
+     {% endfor %}
+
+
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-header mycardheader">
+            <h5>Update Profile Picture</h5>
+        </div>
+        <div class="card-body">
+                <form action="{% url 'update_teacher_profile_picture' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <img id="blah" src="#" alt="Select Image" width="200" height="200" class="rounded mb-2 img-thumbnail" /><br><br>
+                        <input type='file' name="image" class="form-control" onchange="readURL(this);" />
+                        <button class="btn btn-info mt-3 mb-2">Update</button>
+                    </div>
+                </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="container">
+
+    
+
+
     <div class="id_my_details">
         <div class="card">
             <div class="card-header">
-                <h5 class="text-center">{{user.username}} Details (
-                {% if user.is_teacher %}
-                    Teacher
-                {% endif %}
-                    )</h5>
+                <h5 class="text-center">{{ user.username }} Details (Update)</h5>
             </div>
             <div class="card-body">
-                <label>Name</label>
-                <input type="text" class="form-control mb-3" required  value="{{ user.first_name }} {{ user.last_name }}" placeholder="Example" >
+                <form action="{% url 'update_teacher_details' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.first_name }}" name="first_name" placeholder="Example" >
 
-                <label>User Name</label>
-                <input type="text" class="form-control mb-3" required  value="{{ user.username }}" placeholder="Example" >
+                        <label>Last Name</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.last_name }}" name="last_name" placeholder="Example" >
 
-                <label>Designation</label>
-                <input type="text" class="form-control mb-3" required  value="{{ user.teacher.designation }}" placeholder="Example" >
+                        <label>Designation</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.teacher.designation }}" name="designation" placeholder="Example" >
 
-                <button class="btn btn-info">Update</button>
+                        <button class="btn btn-info">Update</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+<div class="alert alert-success m-2">All Teachers</div>
+
     <div class="others_id mt-3">
         <div class="row">
 
+            
+            {% for teacher in allteacher %}
             <div class="col-md-6">
                 <div class="card mt-2">
                     <div class="card-header">
-                        <h5>Name</h5>
+                        <h5>{{ teacher.first_name }} {{ teacher.last_name }}</h5>
                     </div>
                     <div class="card-body">
-                        Details
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="card mt-2">
-                    <div class="card-header">
-                        <h5>Name</h5>
-                    </div>
-                    <div class="card-body">
-                        Details
+                        {% for profilepictures in profilepictures %}
+                            {% if profilepictures.user.username == teacher.username  %}
+                            <img src="{{profilepictures.image.url}}" alt="" height="100" width="100">
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                        <p>Designation: {{teacher.teacher.designation}}</p>
+                        <p>Username: {{teacher.username}}</p>
+                        <p>Email: {{teacher.email}}</p>
+                        <p>User Since: {{teacher.date_joined}}</p>
+
+                            
                     </div>
                 </div>
             </div>
+            {% endfor %} 
+
 
         </div>
     </div>
@@ -135,6 +216,23 @@
         $(document).ready(function(){
         window.history.replaceState('','',window.location.href)
         });
+ </script>
+ <script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(200)
+                    .height(200);
+                    
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
  </script>
 {% endblock scripts %}
     

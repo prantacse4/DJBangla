@@ -1,0 +1,141 @@
+{% extends 'multiauth/base.html' %}
+
+{% load static %}
+{% block title %}
+    PROJECTS | MULTIAUTH
+{% endblock title %}
+
+
+    
+
+
+
+
+{% block studentactive %}
+    active
+{% endblock studentactive %}
+    
+
+{% block body %}
+
+
+
+
+{% for message in messages %}
+            <div class="alert alert-warning m-2"><p>{{message}}</p></div>
+     {% endfor %}
+
+
+
+
+
+
+
+
+<div class="container">
+<div class="alert alert-warning m-2 mb-3"><h5>All Students</h5></div>
+
+    <div class="others_id mt-3">
+        <div class="row">
+
+            
+            {% for students in allstudents %}
+            <div class="col-md-6">
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <h5>{{ students.first_name }} {{ students.last_name }}</h5>
+                    </div>
+                    <div class="card-body">
+
+                        {% for profilepictures in profilepictures %}
+                            {% if profilepictures.user.username == students.username  %}
+                            <img src="{{profilepictures.image.url}}" alt="" height="100" width="100">
+                            {% endif %}
+                        {% endfor %}
+                        <br>
+                        <p>Username: {{students.username}}</p>
+                        <p>Email: {{students.email}}</p>
+                        <p>User Since: {{students.date_joined}}</p>
+
+                        <form action="{% url 'delete_student_by_teacher' students.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <button class="btn btn-danger">Delete this student</button>
+                        </form>
+                            
+                    </div>
+                </div>
+            </div>
+            {% endfor %} 
+
+
+        </div>
+    </div>
+</div>
+
+    
+
+
+
+
+    <br><br>
+
+        <!-- --------------------------------------------- -->
+            <!-- PAGINATION -->
+        <!-- --------------------------------------------- -->
+        <!-- {% if project.paginator.num_pages > 1 %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if project.paginator.num_pages != 1 %}
+                    <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">First</a></li>
+                {% endif %}
+                {% if project.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ project.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                {% endif %}
+                {% for i in project.paginator.page_range %}
+                    {% if project.number == i %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+                    {% elif project.number > i|add:"-5" and project.number < i|add:"+5"%}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if project.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ project.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+                {% endif %}
+                {% if project.paginator.num_pages != project.number %}
+                    <li class="page-item"><a class="page-link" href="?page={{ project.paginator.num_pages }}">Last</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Last</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %} -->
+                <!-- --------------------------------------------- -->
+            <!-- PAGINATION -->
+        <!-- --------------------------------------------- -->
+            
+
+
+
+
+{% endblock body %}
+
+    
+
+
+{% block scripts %}
+
+    <script>
+    // Form Resubmission Stop Query 
+        $(document).ready(function(){
+        window.history.replaceState('','',window.location.href)
+        });
+ </script>
+
+{% endblock scripts %}
+    

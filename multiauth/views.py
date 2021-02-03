@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from .models import User, Teacher, Student, UserProfileImage
-from .forms import StudentSignUpForm, TeacherSignUpForm, UserProfileForm, StudentUpdateForm
+from .forms import StudentSignUpForm, TeacherSignUpForm, UserProfileForm, StudentUpdateForm, TeacherUpdateForm
 from .decorators import student_required, teacher_required
 # Create your views here.
 
@@ -28,7 +28,6 @@ def multiauth_student(request):
     user = request.user
     allstudents = User.objects.filter(is_student=True)
     profilepictures = UserProfileImage.objects.all()
-
     profile = UserProfileImage.objects.filter(user=user)
     diction = {'user':user, 'allstudents':allstudents, 'profilepictures':profilepictures}
     if profile:
@@ -43,11 +42,13 @@ def multiauth_student(request):
 def multiauth_teacher(request):
     user = request.user
     profile = UserProfileImage.objects.filter(user=user)
+    allteacher = User.objects.filter(is_teacher=True)
+    profilepictures = UserProfileImage.objects.all()
+    diction = {'user':user, 'allteacher':allteacher, 'profilepictures':profilepictures}
     if profile:
         profile = UserProfileImage.objects.get(user=user)
-        diction = {'user':user, 'profile':profile}
-    else:
-        diction = {'user':user}
+        diction = {'user':user, 'profile':profile, 'allteacher':allteacher, 'profilepictures':profilepictures}
+
     return render(request, 'multiauth/teacher.html', context=diction)
 
 def multiauth_register_student(request):
@@ -116,6 +117,8 @@ def multiauth_register_teacher(request):
 
 
 
+
+
 def multiauth_login(request):
 
     if request.method == 'POST':
@@ -167,6 +170,60 @@ def multiauth_login(request):
     diction = {}
     return render(request, 'multiauth/login.html', context=diction)
 
+
+
+@login_required(login_url='multiauth_login')
+@teacher_required
+def teacher_view_student(request):
+    allstudents = User.objects.filter(is_student=True)
+    profilepictures = UserProfileImage.objects.all()
+    diction = {'allstudents':allstudents, 'profilepictures':profilepictures}
+    return render(request, 'multiauth/student_view.html', context=diction)
+
+@login_required(login_url='multiauth_login')
+@teacher_required
+def delete_student_by_teacher(request,id):
+    if request.method == 'POST':
+        del_id = User.objects.get(pk=id)
+        del_id.delete()
+        return redirect('teacher_view_student')
+
+
+@login_required(login_url='multiauth_login')
+@teacher_required
+def update_teacher_profile_picture(request):
+    user = request.user
+    userimage  = UserProfileImage.objects.filter(user=user)
+    if userimage:
+        image = UserProfileImage.objects.get(user=user)
+        if request.method=='POST':
+            myform = UserProfileForm(request.POST, request.FILES, instance=image)
+            if myform.is_valid():
+                myform.save(commit=True)
+                return redirect('multiauth_teacher')
+    else:
+        if request.method=='POST':
+            myform = UserProfileForm(request.POST, request.FILES)
+            if myform.is_valid():
+                user = user 
+                image = myform.cleaned_data.get('image')
+                register = UserProfileImage(user = user, image=image)
+                register.save()
+                messages.success(request, user)
+                return redirect('multiauth_teacher')
+
+
+@login_required(login_url='multiauth_login')
+@teacher_required
+def update_teacher_details(request):
+    user = request.user
+    user = User.objects.get(username=user)
+    teacher = user
+    if request.method=='POST':
+        myform = TeacherUpdateForm(request.POST, instance=teacher)
+        if myform.is_valid():
+            myform.save()
+            return redirect('multiauth_teacher')
 
 
 

@@ -49,10 +49,20 @@ class StudentUpdateForm(forms.ModelForm):
         model = User
         fields =[ 'first_name', 'last_name']
 
-    # @transaction.atomic
-    # def save(self):
-    #     user = super().save(commit=False)
-    #     user.is_student = True
-    #     user.save()
-    #     student = Student.objects.update(user=user)
-    #     return user
+class TeacherUpdateForm(forms.ModelForm):
+    designation = forms.CharField(required=True)
+    class Meta:
+        model = User
+        fields =[ 'first_name', 'last_name']
+        
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.save()
+        teacher = Teacher.objects.get(user=user)
+        teacher.designation = self.cleaned_data.get('designation')
+        teacher.save()
+        return teacher
+
+
+  
