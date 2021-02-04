@@ -8,9 +8,14 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class StudentSignUpForm(UserCreationForm):
+    name = forms.CharField(required=True)
+    student_id = forms.CharField(required=True)
+    phone = forms.CharField(required=True)
+    dept = forms.CharField(required=True)
+    university = forms.CharField(required=True)
     class Meta:
         model = User
-        fields =[ 'first_name', 'last_name','username', 'email', 'password1', 'password2']
+        fields =['username', 'email', 'password1', 'password2']
 
     @transaction.atomic
     def save(self):
@@ -18,14 +23,58 @@ class StudentSignUpForm(UserCreationForm):
         user.is_student = True
         user.save()
         student = Student.objects.create(user=user)
-        return user
+        student.name = self.cleaned_data.get('name')
+        student.student_id = self.cleaned_data.get('student_id')
+        student.phone = self.cleaned_data.get('phone')
+        student.dept = self.cleaned_data.get('dept')
+        student.university = self.cleaned_data.get('university')
+        student.save()
+        return student
+
+
+
+
+
+
+class StudentUpdateForm(forms.ModelForm):
+    name = forms.CharField(required=True)
+    phone = forms.CharField(required=True)
+    dept = forms.CharField(required=True)
+    university = forms.CharField(required=True)
+    class Meta:
+        model = User
+        fields = ['name', 'phone', 'dept', 'university']
+        exclude=['username', 'email', 'password1', 'password2']
+
+    @transaction.atomic
+    def save(self):
+        user = super().save(commit=False)
+        user.save()
+        student = Student.objects.get(user=user)
+        student.name = self.cleaned_data.get('name')
+        student.phone = self.cleaned_data.get('phone')
+        student.dept = self.cleaned_data.get('dept')
+        student.university = self.cleaned_data.get('university')
+        student.save()
+        return student
+
+
+
+
+
+
+
 
 
 class TeacherSignUpForm(UserCreationForm):
     designation = forms.CharField(required=True)
+    name = forms.CharField(required=True)
+    phone = forms.CharField(required=True)
+    dept = forms.CharField(required=True)
+    university = forms.CharField(required=True)
     class Meta:
         model = User
-        fields =[ 'first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields =['username', 'email', 'password1', 'password2']
 
     @transaction.atomic
     def save(self):
@@ -34,26 +83,27 @@ class TeacherSignUpForm(UserCreationForm):
         user.save()
         teacher = Teacher.objects.create(user=user)
         teacher.designation = self.cleaned_data.get('designation')
+        teacher.name = self.cleaned_data.get('name')
+        teacher.phone = self.cleaned_data.get('phone')
+        teacher.dept = self.cleaned_data.get('dept')
+        teacher.university = self.cleaned_data.get('university')
         teacher.save()
         return teacher
 
 
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = UserProfileImage
-        fields = ['image']
 
 
-class StudentUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields =[ 'first_name', 'last_name']
 
 class TeacherUpdateForm(forms.ModelForm):
     designation = forms.CharField(required=True)
+    name = forms.CharField(required=True)
+    phone = forms.CharField(required=True)
+    dept = forms.CharField(required=True)
+    university = forms.CharField(required=True)
     class Meta:
         model = User
-        fields =[ 'first_name', 'last_name']
+        fields = ['name', 'designation', 'phone', 'dept', 'university']
+        exclude=['username', 'email', 'password1', 'password2']
         
     @transaction.atomic
     def save(self):
@@ -61,8 +111,18 @@ class TeacherUpdateForm(forms.ModelForm):
         user.save()
         teacher = Teacher.objects.get(user=user)
         teacher.designation = self.cleaned_data.get('designation')
+        teacher.name = self.cleaned_data.get('name')
+        teacher.phone = self.cleaned_data.get('phone')
+        teacher.dept = self.cleaned_data.get('dept')
+        teacher.university = self.cleaned_data.get('university')
         teacher.save()
         return teacher
 
 
   
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfileImage
+        fields = ['image']
+

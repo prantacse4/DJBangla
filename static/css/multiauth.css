@@ -1,14 +1,15 @@
 * {
     margin: 0;
     padding: 0;
+      scroll-behavior: smooth;
   }
-  
+
   /* BanglaFont */
-  
+  @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500&display=swap');
   @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
   :root {
     --roboto: "Roboto", sans-serif;
-    --engfont: "Raleway", sans-serif;
+    --engfont: "Ubuntu", sans-serif;
     --banglafont: "Hind Siliguri", sans-serif;
     --bg: #5cdb94;
     --darkcolor: #05396b;
@@ -62,43 +63,136 @@
     align-items: center;
     flex-direction: column;
 }
-.myprofile{
+
+
+
+
+.profilepage{
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
-    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    border-top: 1px solid #d9d9d9;
 }
-.profileimage {
-    position: relative;
-    top: -50px;
-    right: -10px;
-    flex: 70%;
-}
-.profileimage img {
-    box-shadow: -3px -2px 6px 3px rgba(0,0,0,.11);
-}
-.coverprofile{
-    height: 150px;
-    position: relative;
-    background-color: var(--bg);
-}
-.profiledetails {
+.userside{
     flex: 30%;
     display: flex;
     flex-direction: column;
+    padding-right: 3rem;
+    border-right: 1px solid #d9d9d9;
+    padding-top: 2rem;
 }
-.profiledetails p {
+.userside h3{
     font-family: var(--engfont);
-    font-size: 1.1rem;
-    font-weight: 400;
+text-align: center;
+font-weight: 300;
+color: var(--bg);
+font-size: 1.5rem;
 }
-.profilename {
-    font-style: italic;
-    font-weight: 700 !important;
-    font-size: 1.2rem !important;
+.profileside{
+    flex: 70%;
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+.profileuserlinks{
+    display: flex;
+flex-direction: column;
+}
+.profileuserlinks a {
+    background: #eefff6eb;
+    color: var(--darkcolor);
+    margin: 2px;
+    padding: .4rem 1rem;
+    font-family: var(--engfont);
+    font-weight: 500;
+}
+.profileuserlinks_active{
+    background: #dcffeb !important;
+}
+.profileuserlinks a:hover{
+    text-decoration: none !important;
+    background: var(--bg) !important;
+}
+.profilepic{
+    text-align: center;
+    margin: 1rem;
+}
+.profilepic img {
+    border-radius: 30rem !important;
+    height: 7rem;
+    width: 7rem;
+    padding: .15rem;
+    border: 1px solid #b3b3b3;
+}
+.profilepic img:hover {
+
+    padding: .2rem;
+    border: 2px solid #dcffeb;
+    transition: all 0.1s ease;
+    cursor: pointer;
+}
+.profileside h5{
+    color: #3eb572;
+padding-bottom: 1rem;
+}
+.profiledangerbtn{
+    border: 0px;
+color: #ff3e3eb5;
+font-weight: 700;
+background: none;
+}
+.profiledangerbtn:hover{
+    color: crimson;
 }
 
-.profiledetails a{
-    padding: 0rem 0rem !important;
-width: 50%;
+
+.profiledangerbtn2{
+    border: 0px;
+color: #ff3e3eb5;
+font-weight: 700;
+background: white;
+}
+.profiledangerbtn2:hover{
+    color: crimson;
+}
+.myprofilecard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cardprofilepic  img {
+    border-radius: 30rem !important;
+    height: 6.5rem;
+    width: 6.5rem;
+    padding: .15rem;
+    border: 1px solid #b3b3b3;
+}
+.cardprofilepic img:hover {
+
+    padding: .2rem;
+    border: 2px solid #dcffeb;
+    transition: all 0.1s ease;
+    cursor: pointer;
+}
+.cardprofilepic{
+    padding-right: 1rem;
+border-right: 1px solid #80fab5;
+}
+.card_details{
+    padding-left: 1rem;
+}
+.card_details p{
+    line-height: 2rem;
+font-size: 1rem;
+font-weight: 500;
+font-family: var(--engfont);
+}
+
+.imageview{
+    border-radius: 30rem !important;
+    height: 7rem;
+    width: 7rem;
+    padding: .15rem;
+    border: 1px solid #b3b3b3;
 }

@@ -20,42 +20,96 @@
 
 
 <div class="container">
-    <div class="card">
-        <div class="card-header"></div>
-        <div class="coverprofile">
-        </div>
-        <div class="myprofile">
-            <div class="profileimage">
-                {% if profile.image %}
-                    <img src="{{ profile.image.url }}" alt="profile" width="200" height="300" class="rounded mb-2 img-thumbnail">
+    <div class="profilepage">
+
+        <div class="userside">
+            <h3>{{user.student.name}}</h3>
+            <div class="profilepic">
+                {% if user.userprofileimage.image %}
+                    <img src="{{ user.userprofileimage.image.url }}" alt="profile"  >
                 {% else %}
-                    <img src="{% static 'img/logo.png' %}" alt="profile" width="200" height="300" class="rounded mb-2 img-thumbnail">
+                    <img src="{% static 'img/logo.png' %}" alt="profile" >
                 {% endif %}
             </div>
-            <div class="profiledetails">
-                <p class="profilename">{{user.first_name}} {{user.last_name}}</p>
-                <p>Username: {{ user.username }} (
-                    
-                    {% if user.is_student %}
-                        Student
-                    {% endif %}
-                        
-                    )</p>
-                <p>Email: {{ user.email }}</p>
-                <p>User Since: {{user.date_joined}}</p>
-                <p>Last Login: {{user.last_login}}</p>
-
-                <form action="{% url 'delete_my_account' %}" method="POST" class="d-inline">
-                    {% csrf_token %}
-                    <button class="btn btn-danger">Delete My Account</button>
-                </form>
+            <div class="profileuserlinks">
+                <a href="#" class="profileuserlinks_active">Profile</a>
+            <a href="#updateprofile">Update Profile</a>
+            <a href="#allstudents">All Students</a>
             </div>
         </div>
-        <div class="card-footer">
 
+        <div class="profileside">
+            <h5>Basic Profile</h5>
+            <div class="profiledetails">
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <td>Member Type</td>
+                        <td>Student</td>
+                    </tr>
+                    <tr>
+                        <td>Full Name</td>
+                        <td>{{user.student.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Student ID</td>
+                        <td>{{user.student.student_id}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Username</td>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>{{user.student.phone}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Email</td>
+                        <td>{{user.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Department</td>
+                        <td>{{user.student.dept}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>University</td>
+                        <td>{{user.student.university}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Last Login </td>
+                        <td>{{user.last_login}}</td>
+                    </tr>
+                    <tr>
+                        <td>Joined</td>
+                        <td>{{user.date_joined}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Action</td>
+                        <td>
+                            <form action="{% url 'delete_my_account' %}" method="POST" class="d-inline">
+                                {% csrf_token %}
+                                <button class="profiledangerbtn">Delete My Account</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
         </div>
+
+
     </div>
-</div> <br>
+</div>
+
+
+
+<br>
 
 
 {% for message in messages %}
@@ -65,7 +119,7 @@
 {% endfor %}
 
 
-<div class="container">
+<div class="container" id="updateprofile">
     <div class="card mb-3">
         <div class="card-header mycardheader">
             <h5>Update Profile Picture</h5>
@@ -74,7 +128,7 @@
                 <form action="{% url 'update_student_profile_picture' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
-                        <img id="blah" src="#" alt="Select Image" width="200" height="200" class="rounded mb-2 img-thumbnail" /><br><br>
+                        <img id="blah" src="#" alt="--Select Image--"  class="imageview" /><br><br>
                         <input type='file' name="image" class="form-control" onchange="readURL(this);" />
                         <button class="btn btn-info mt-3 mb-2">Update</button>
                     </div>
@@ -95,18 +149,27 @@
 
     <div class="id_my_details">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header mycardheader">
                 <h5 class="text-center">{{ user.username }} Details (Update)</h5>
             </div>
             <div class="card-body">
                 <form action="{% url 'update_student_details' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control mb-3" required  value="{{ user.first_name }}" name="first_name" placeholder="Example" >
+                        <label>Full Name</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.student.name }}" name="name" placeholder="Your full name" >
+                         
+                        <label>Phone</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.student.phone }}" name="phone" placeholder="Your full name" >
+                         
 
-                        <label>Last Name</label>
-                        <input type="text" class="form-control mb-3" required  value="{{ user.last_name }}" name="last_name" placeholder="Example" >
+                        <label>Dept</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.student.dept }}" name="dept" placeholder="Your full name" >
+                         
+
+                        <label>University</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.student.university }}" name="university" placeholder="Your full name" >
+                         
                         <button class="btn btn-info">Update</button>
                     </div>
                 </form>
@@ -114,29 +177,49 @@
         </div>
     </div>
 
-<div class="alert alert-success m-2">All Students</div>
+<div class="card mt-4">
+    <div class="card-header mycardheader">
+        <h5 class="text-center">All Students</h5>
+    </div>
+</div>
 
-    <div class="others_id mt-3">
+
+
+    <div class="others_id mt-3" id="allstudents">
         <div class="row">
 
             
             {% for students in allstudents %}
             <div class="col-md-6">
                 <div class="card mt-2">
-                    <div class="card-header">
-                        <h5>{{ students.first_name }} {{ students.last_name }}</h5>
+                    <div class="card-header mycardheader1">
+                        <h5 class="text-center">{{ students.student.name }}</h5>
                     </div>
-                    <div class="card-body">
 
-                        {% for profilepictures in profilepictures %}
-                            {% if profilepictures.user.username == students.username  %}
-                            <img src="{{profilepictures.image.url}}" alt="" height="100" width="100">
-                            {% endif %}
-                        {% endfor %}
+
+                    <div class="card-body ">
+
+
+
+                        <div class="myprofilecard">
+                            <div class="cardprofilepic">
+                                {% if students.userprofileimage.image %}
+                                    <img src="{{students.userprofileimage.image.url}}" >
+                                {% else %}
+                                    <img src="{% static 'img/logo.png' %}" alt="profile" >
+                                {% endif %}
+                            </div>
+
+                            <div class="card_details">
+                                <p>ID: {{students.student.student_id}}</p>
+                                <p>Phone: {{students.student.phone}}</p>
+                                <p>Email: {{students.email}}</p>
+                                <p>Dept: {{students.student.dept}}</p>
+                                <p>University: {{students.student.university}}</p>
+                            </div>
+                        </div>
                         <br>
-                        <p>Username: {{students.username}}</p>
-                        <p>Email: {{students.email}}</p>
-                        <p>User Since: {{students.date_joined}}</p>
+                        
 
                             
                     </div>
@@ -220,9 +303,7 @@
 
             reader.onload = function (e) {
                 $('#blah')
-                    .attr('src', e.target.result)
-                    .width(200)
-                    .height(200);
+                    .attr('src', e.target.result);
                     
             };
 

@@ -19,44 +19,103 @@
 {% block body %}
 
 
+
 <div class="container">
-    <div class="card">
-        <div class="card-header"></div>
-        <div class="coverprofile">
-        </div>
-        <div class="myprofile">
-            <div class="profileimage">
-                {% if profile.image %}
-                    <img src="{{ profile.image.url }}" alt="profile" width="200" height="300" class="rounded mb-2 img-thumbnail">
+    <div class="profilepage">
+
+        <div class="userside">
+            <h3>{{user.teacher.name}}</h3>
+            <div class="profilepic">
+                {% if user.userprofileimage.image %}
+                    <img src="{{ user.userprofileimage.image.url }}" alt="profile"  >
                 {% else %}
-                    <img src="{% static 'img/logo.png' %}" alt="profile" width="200" height="300" class="rounded mb-2 img-thumbnail">
+                    <img src="{% static 'img/logo.png' %}" alt="profile" >
                 {% endif %}
             </div>
-            <div class="profiledetails">
-                <p class="profilename">{{user.first_name}} {{user.last_name}}</p>
-                <p><strong>{{ user.teacher.designation }}</strong></p>
-                <p>Username: {{ user.username }} (
-                    
-                    {% if user.is_teacher %}
-                        Teacher
-                    {% endif %}
-                        
-                    )</p>
-                <p>Email: {{ user.email }}</p>
-                <p>User Since: {{user.date_joined}}</p>
-                <p>Last Login: {{user.last_login}}</p>
-
-                <form action="{% url 'delete_my_account' %}" method="POST" class="d-inline">
-                    {% csrf_token %}
-                    <button class="btn btn-danger">Delete My Account</button>
-                </form>
+            <div class="profileuserlinks">
+                <a href="#" class="profileuserlinks_active">Profile</a>
+            <a href="#updateprofile">Update Profile</a>
+            <a href="#allteachers">All Teachers</a>
             </div>
         </div>
-        <div class="card-footer">
 
+        <div class="profileside">
+            <h5>Basic Profile</h5>
+            <div class="profiledetails">
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <td>Member Type</td>
+                        <td>
+                            {% if user.is_teacher %}
+                                Teacher
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Full Name</td>
+                        <td>{{user.teacher.name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Designation</td>
+                        <td>{{user.teacher.designation}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Username</td>
+                        <td>{{user.username}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>{{user.teacher.phone}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Email</td>
+                        <td>{{user.email}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Department</td>
+                        <td>{{user.teacher.dept}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>University</td>
+                        <td>{{user.teacher.university}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Last Login </td>
+                        <td>{{user.last_login}}</td>
+                    </tr>
+                    <tr>
+                        <td>Joined</td>
+                        <td>{{user.date_joined}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Action</td>
+                        <td>
+                            <form action="{% url 'delete_my_account' %}" method="POST" class="d-inline">
+                                {% csrf_token %}
+                                <button class="profiledangerbtn">Delete My Account</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
         </div>
+
+
     </div>
-</div> <br>
+</div>
+
+<br>
+
+
+
 
 
 {% for message in messages %}
@@ -65,7 +124,8 @@
 </div>
 {% endfor %}
 
-<div class="container">
+
+<div class="container" id="updateprofile">
     <div class="card mb-3">
         <div class="card-header mycardheader">
             <h5>Update Profile Picture</h5>
@@ -74,7 +134,7 @@
                 <form action="{% url 'update_teacher_profile_picture' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
-                        <img id="blah" src="#" alt="Select Image" width="200" height="200" class="rounded mb-2 img-thumbnail" /><br><br>
+                        <img id="blah" src="#" alt="--Select Image--"  class="imageview" /><br><br>
                         <input type='file' name="image" class="form-control" onchange="readURL(this);" />
                         <button class="btn btn-info mt-3 mb-2">Update</button>
                     </div>
@@ -91,25 +151,29 @@
 <div class="container">
 
     
-
-
     <div class="id_my_details">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header mycardheader">
                 <h5 class="text-center">{{ user.username }} Details (Update)</h5>
             </div>
             <div class="card-body">
                 <form action="{% url 'update_teacher_details' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control mb-3" required  value="{{ user.first_name }}" name="first_name" placeholder="Example" >
-
-                        <label>Last Name</label>
-                        <input type="text" class="form-control mb-3" required  value="{{ user.last_name }}" name="last_name" placeholder="Example" >
+                        <label>Full Name</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.teacher.name }}" name="name" placeholder="Your Full Name" >
 
                         <label>Designation</label>
-                        <input type="text" class="form-control mb-3" required  value="{{ user.teacher.designation }}" name="designation" placeholder="Example" >
+                        <input type="text" class="form-control mb-3" required  value="{{ user.teacher.designation }}" name="designation" placeholder="Designation" >
+
+                        <label>Phone</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.teacher.phone }}" name="phone" placeholder="01XXXXXXXXX" >
+
+                        <label>Dept</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.teacher.dept }}" name="dept" placeholder="Dept" >
+
+                        <label>University</label>
+                        <input type="text" class="form-control mb-3" required  value="{{ user.teacher.university }}" name="university" placeholder="University" >
 
                         <button class="btn btn-info">Update</button>
                     </div>
@@ -118,30 +182,47 @@
         </div>
     </div>
 
-<div class="alert alert-success m-2">All Teachers</div>
+<div class="card mt-4">
+    <div class="card-header mycardheader">
+        <h5 class="text-center">All Teachers</h5>
+    </div>
+</div>
 
-    <div class="others_id mt-3">
+
+
+
+    <div class="others_id mt-3" id="allteachers">
         <div class="row">
 
             
             {% for teacher in allteacher %}
             <div class="col-md-6">
                 <div class="card mt-2">
-                    <div class="card-header">
-                        <h5>{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+                    <div class="card-header mycardheader1">
+                        <h5 class="text-center">{{ teacher.teacher.name }} </h5>
                     </div>
                     <div class="card-body">
 
-                        {% for profilepictures in profilepictures %}
-                            {% if profilepictures.user.username == teacher.username  %}
-                            <img src="{{profilepictures.image.url}}" alt="" height="100" width="100">
-                            {% endif %}
-                        {% endfor %}
+                        <div class="myprofilecard">
+                            <div class="cardprofilepic">
+                                {% if teacher.userprofileimage.image %}
+                                    <img src="{{teacher.userprofileimage.image.url}}" >
+                                {% else %}
+                                    <img src="{% static 'img/logo.png' %}" alt="profile" >
+                                {% endif %}
+
+
+                            </div>
+
+                            <div class="card_details">
+                                <p>Designation: {{teacher.teacher.designation}}</p>
+                                <p>Phone: {{teacher.teacher.phone}}</p>
+                                <p>Email: {{teacher.email}}</p>
+                                <p>Dept: {{teacher.teacher.dept}}</p>
+                                <p>University: {{teacher.teacher.university}}</p>
+                                <p>User Since: {{teacher.date_joined}}</p>
+                            </div>
                         <br>
-                        <p>Designation: {{teacher.teacher.designation}}</p>
-                        <p>Username: {{teacher.username}}</p>
-                        <p>Email: {{teacher.email}}</p>
-                        <p>User Since: {{teacher.date_joined}}</p>
 
                             
                     </div>
@@ -225,9 +306,7 @@
 
             reader.onload = function (e) {
                 $('#blah')
-                    .attr('src', e.target.result)
-                    .width(200)
-                    .height(200);
+                    .attr('src', e.target.result);
                     
             };
 

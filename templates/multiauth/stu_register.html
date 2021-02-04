@@ -40,18 +40,12 @@
                     {% endif %}
 
                 <div class="form-group row mt-2 mb-3">
-                    <label class="col-sm-2 col-form-label">First Name</label>
+                    <label class="col-sm-2 col-form-label">Full Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control"  placeholder="Enter first name" name="first_name" required>
+                      <input type="text" class="form-control"  placeholder="Enter your full name" name="name" required>
                     </div>
                   </div>
 
-                  <div class="form-group row mt-2 mb-3">
-                    <label class="col-sm-2 col-form-label">Last Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control"  placeholder="Enter last name" name="last_name" required>
-                    </div>
-                  </div>
 
                   <div class="form-group row mt-2 mb-3">
                     <label class="col-sm-2 col-form-label">Username</label>
@@ -64,6 +58,34 @@
                     <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
                       <input type="email" class="form-control"  placeholder="xyz@email.com" name="email" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mt-2 mb-3">
+                    <label class="col-sm-2 col-form-label">Student ID</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"  placeholder="Enter Stduent ID" name="student_id" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mt-2 mb-3">
+                    <label class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"  placeholder="01XXXXXXXXX" name="phone" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mt-2 mb-3">
+                    <label class="col-sm-2 col-form-label">Dept</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"  placeholder="Enter department" name="dept" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mt-2 mb-3">
+                    <label class="col-sm-2 col-form-label">University</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control"  placeholder="Enter your university" name="university" required>
                     </div>
                   </div>
 
@@ -82,17 +104,17 @@
                   </div>
 
                 <div class="text-center">
-                    <button class="btn btn-primary">Register</button>
+                    <button class="btn btn-success">Register</button>
                 </div>
             </form>
 
             <br>
-            <div class="text-center">
-              <a href="{% url 'multiauth' %}" class="btn btn-success  text-white">Home</a><span>
-                <a href="{% url 'multiauth_login' %}" class="btn btn-success  text-white">Login</a>
+            <div class="text-center mt-2">
+              <a href="{% url 'multiauth' %}" class="btn btn-info  text-white">Home</a><span>
+                <a href="{% url 'multiauth_login' %}" class="btn btn-info  text-white">Login</a>
               </span>
               <span>
-                <a href="{% url 'multiauth_register_teacher' %}" class="btn btn-success  text-white">Register (Teacher)</a>
+                <a href="{% url 'multiauth_register_teacher' %}" class="btn btn-info  text-white">Register (Teacher)</a>
               </span>
             </div>
 

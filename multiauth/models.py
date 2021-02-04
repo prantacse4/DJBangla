@@ -10,23 +10,23 @@ class User(AbstractUser):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    # first_name  = models.CharField(max_length=100)
-    # last_name  = models.CharField(max_length=100)
-    # phone = models.CharField(max_length=11)
-    # class_roll = models.CharField(max_length=50)
-    # dept = models.CharField(max_length=100)
-    # profile_image = models.ImageField(upload_to="uploaded_image/student")
+    name = models.CharField(max_length=254)
+    student_id = models.CharField(max_length=50, unique=True)
+    phone = models.CharField(max_length=11)
+    dept = models.CharField(max_length=150)
+    university = models.CharField(max_length=150)
+
 
 
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    # first_name  = models.CharField(max_length=100)
-    # last_name  = models.CharField(max_length=100)
-    # phone = models.CharField(max_length=11)
-    # email = models.EmailField(max_length=254)
+
+    name = models.CharField(max_length=254)
     designation = models.CharField(max_length=100)
-    # dept = models.CharField(max_length=100)
-    # profile_image = models.ImageField(upload_to="uploaded_image/teacher")
+    phone = models.CharField(max_length=11)
+    dept = models.CharField(max_length=150)
+    university = models.CharField(max_length=150)
+
 
 
 class UserProfileImage(models.Model):

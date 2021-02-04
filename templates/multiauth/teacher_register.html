@@ -39,15 +39,9 @@
                 {% endif %}
 
             <div class="form-group row mt-2 mb-3">
-                <label class="col-sm-2 col-form-label">First Name</label>
+                <label class="col-sm-2 col-form-label">Full Name</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control"  placeholder="Enter first name" name="first_name" required>
-                </div>
-              </div>
-              <div class="form-group row mt-2 mb-3">
-                <label class="col-sm-2 col-form-label">Last Name</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control"  placeholder="Enter last name" name="last_name" required>
+                  <input type="text" class="form-control"  placeholder="Enter your full name" name="name" required>
                 </div>
               </div>
 
@@ -73,6 +67,27 @@
               </div>
 
               <div class="form-group row mt-2 mb-3">
+                <label class="col-sm-2 col-form-label">Phone</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  placeholder="01XXXXXXXXX" name="phone" required>
+                </div>
+              </div>
+
+              <div class="form-group row mt-2 mb-3">
+                <label class="col-sm-2 col-form-label">Dept</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  placeholder="Enter department" name="dept" required>
+                </div>
+              </div>
+
+              <div class="form-group row mt-2 mb-3">
+                <label class="col-sm-2 col-form-label">University</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  placeholder="Enter your university" name="university" required>
+                </div>
+              </div>
+
+              <div class="form-group row mt-2 mb-3">
                 <label class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
                   <input type="password" class="form-control"  placeholder="Password" name="password1" required>
@@ -87,18 +102,18 @@
               </div>
 
             <div class="text-center">
-                <button class="btn btn-primary">Register</button>
+                <button class="btn btn-success">Register</button>
             </div>
 
             </form>
 
             <br>
-            <div class="text-center">
-              <a href="{% url 'multiauth' %}" class="btn btn-success  text-white">Home</a><span>
-                <a href="{% url 'multiauth_login' %}" class="btn btn-success  text-white">Login</a>
+            <div class="text-center mt-2">
+              <a href="{% url 'multiauth' %}" class="btn btn-info  text-white">Home</a><span>
+                <a href="{% url 'multiauth_login' %}" class="btn btn-info  text-white">Login</a>
               </span>
               <span>
-                <a href="{% url 'multiauth_register_student' %}" class="btn btn-success  text-white">Register (Student)</a>
+                <a href="{% url 'multiauth_register_student' %}" class="btn btn-info  text-white">Register (Student)</a>
               </span>
             </div>
 

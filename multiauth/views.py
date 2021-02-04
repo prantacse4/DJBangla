@@ -41,15 +41,11 @@ def multiauth_student(request):
 @teacher_required
 def multiauth_teacher(request):
     user = request.user
-    profile = UserProfileImage.objects.filter(user=user)
     allteacher = User.objects.filter(is_teacher=True)
-    profilepictures = UserProfileImage.objects.all()
-    diction = {'user':user, 'allteacher':allteacher, 'profilepictures':profilepictures}
-    if profile:
-        profile = UserProfileImage.objects.get(user=user)
-        diction = {'user':user, 'profile':profile, 'allteacher':allteacher, 'profilepictures':profilepictures}
-
+    diction = {'user':user, 'allteacher':allteacher}
     return render(request, 'multiauth/teacher.html', context=diction)
+
+
 
 def multiauth_register_student(request):
     if request.user.is_authenticated:
@@ -106,7 +102,8 @@ def update_student_details(request):
     if request.method=='POST':
         myform = StudentUpdateForm(request.POST, instance=student)
         if myform.is_valid():
-            myform.save(commit=True)
+            myform.save()
+            messages.info(request, 'Profile details updated successfully')
             return redirect('multiauth_student')
 
 
@@ -146,39 +143,59 @@ def multiauth_login(request):
             return  HttpResponseRedirect('/admin')
 
     if request.method == 'POST':
-        username = request.POST.get('username')
+        logininfo = request.POST.get('username')
         password = request.POST.get('password')
         is_what = False
         is_student =False
         is_teacher = False
         is_superuser = False
-        is_what = User.objects.filter(username=username)
+        is_what = User.objects.filter(username=logininfo)
+        is_what2 = User.objects.filter(email = logininfo)
+
         if is_what:
-            is_what = User.objects.get(username=username)
+            is_what = User.objects.get(username=logininfo)
+            is_student = is_what.is_student
+            is_teacher = is_what.is_teacher
+            is_superuser = is_what.is_superuser
+
+        elif is_what2:
+            is_what = User.objects.get(email=logininfo)
             is_student = is_what.is_student
             is_teacher = is_what.is_teacher
             is_superuser = is_what.is_superuser
 
         if is_student == True:
-            user = authenticate(request, username=username, password=password, is_student=True)
+            try:
+                user = authenticate(request, username=User.objects.get(email=logininfo), password=password, is_teacher=True)
+            except:
+                user = authenticate(request, username=logininfo, password=password, is_teacher=True)
+
             if user is not None:
                 login(request, user)
                 return redirect('multiauth_student')
             else:
-                messages.info(request, 'Wrong username/password')
+                messages.info(request, 'Wrong username/email or password')
                 return redirect('multiauth_login')
-            
+                
         elif is_teacher == True:
-            user = authenticate(request, username=username, password=password, is_teacher=True)
+            try:
+                user = authenticate(request, username=User.objects.get(email=logininfo), password=password, is_teacher=True)
+            except:
+                user = authenticate(request, username=logininfo, password=password, is_teacher=True)
+
             if user is not None:
                 login(request, user)
                 return redirect('multiauth_teacher')
             else:
-                messages.info(request, 'Wrong username/password')
+                messages.info(request, 'Wrong username/email or password')
                 return redirect('multiauth_login')
 
         elif is_superuser==True:
-            user = authenticate(request, username=username, password=password)
+            try:
+                user = authenticate(request, username=User.objects.get(email=logininfo), password=password)
+            except:
+                user = authenticate(request, username=logininfo, password=password)
+
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect('/admin')
@@ -190,7 +207,6 @@ def multiauth_login(request):
             messages.info(request, 'Wrong username/password')
             return redirect('multiauth_login')
 
-
     diction = {}
     return render(request, 'multiauth/login.html', context=diction)
 
@@ -200,8 +216,7 @@ def multiauth_login(request):
 @teacher_required
 def teacher_view_student(request):
     allstudents = User.objects.filter(is_student=True)
-    profilepictures = UserProfileImage.objects.all()
-    diction = {'allstudents':allstudents, 'profilepictures':profilepictures}
+    diction = {'allstudents':allstudents}
     return render(request, 'multiauth/student_view.html', context=diction)
 
 @login_required(login_url='multiauth_login')
@@ -249,6 +264,7 @@ def update_teacher_details(request):
         myform = TeacherUpdateForm(request.POST, instance=teacher)
         if myform.is_valid():
             myform.save()
+            messages.info(request, 'Profile details updated successfully')
             return redirect('multiauth_teacher')
 
 
