@@ -23,6 +23,13 @@
                         <h5>{{myform.errors.username}}</h5>
                     </div>
                     {% endif %}
+
+                    {% if myform.errors.student_id %}
+                    <div class="alert alert-danger">
+                        <h5>{{myform.errors.student_id}}</h5>
+                    </div>
+                    {% endif %}
+
                     {% if myform.errors.email %}
                     <div class="alert alert-danger">
                         <h5>{{myform.errors.email}}</h5>

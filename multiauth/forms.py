@@ -17,6 +17,14 @@ class StudentSignUpForm(UserCreationForm):
         model = User
         fields =['username', 'email', 'password1', 'password2']
 
+    def clean_student_id(self):
+        student_id = self.cleaned_data.get('student_id')
+        for instance in Student.objects.all():
+            if instance.student_id == student_id:
+                raise forms.ValidationError("Student ID should be unique.")
+     
+        return student_id
+
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
