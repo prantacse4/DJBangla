@@ -21,14 +21,14 @@ STATIC_DIR = BASE_DIR/ 'static'
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wu!974l2it0rsu+wfu&h&ytc7k8fc0gdls$=h^32&dvxr8)cue'
+SECRET_KEY = 'i7jiufsd)mazp5cs0b#lhah69yjy1a_6$u7gq99hlv*8ko&_8!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-# AUTH_USER_MODEL = 'multiauth.User'
 
+AUTH_USER_MODEL = 'multiauth.User'
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,9 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'basics',
-    'crudsearch',
-    # 'livecrudsearch',
-    'imagecrud',
     'multiauth',
     'django_cleanup',
 ]
@@ -123,6 +120,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+STATIC_URL = '/static/'
 
 STATIC_URL = '/static/'
 
