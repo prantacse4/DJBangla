@@ -118,7 +118,7 @@ def crudsearch_delete_student(request, id):
         delete_id = Student.objects.get(pk=id)
         delete_id.delete()
         messages.success(request, 'Student deleted successfully')
-        return HttpResponseRedirect('/crudsearch/student')
+        return HttpResponseRedirect('/crudsearch/student/')
 
 
 def crudsearch_remove_project(request, id):
@@ -198,7 +198,7 @@ def crudsearch_student_edit(request, id):
         if myform.is_valid():
             myform.save(commit=True)
             messages.success(request, 'Student updated successfully')
-            return HttpResponseRedirect('/crudsearch/student_edit/'+string_id+'/')
+            return HttpResponseRedirect('/crudsearch/student/')
 
     return render(request, 'crudsearch/student_edit.html', context=diction)
 
@@ -213,6 +213,6 @@ def crudsearch_project_edit(request, id):
         if myform.is_valid():
             myform.save(commit=True)
             messages.success(request, 'Project updated successfully')
-            return HttpResponseRedirect('/crudsearch/project_edit/'+string_id+'/')
+            return HttpResponseRedirect('/crudsearch/')
 
     return render(request, 'crudsearch/project_edit.html', context=diction)
