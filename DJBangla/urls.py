@@ -14,9 +14,8 @@ if settings.DEBUG:
 
 urlpatternsForApps = [
     path('', include('basics.urls')),
-    # path('crudsearch/', include('crudsearch.urls')),
-    # path('crudsearch/', include('crudsearch.urls')),
-    # path('imagecrud/', include('imagecrud.urls')),
+    path('crudsearch/', include('crudsearch.urls')),
+    path('imagecrud/', include('imagecrud.urls')),
     path('multiauth/', include('multiauth.urls')),
 ]
 urlpatterns += urlpatternsForApps
