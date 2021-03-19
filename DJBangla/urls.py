@@ -17,6 +17,7 @@ urlpatternsForApps = [
     path('crudsearch/', include('crudsearch.urls')),
     path('imagecrud/', include('imagecrud.urls')),
     path('multiauth/', include('multiauth.urls')),
+    path('djangogallery/', include('djangoGallery.urls')),
 ]
 urlpatterns += urlpatternsForApps
 

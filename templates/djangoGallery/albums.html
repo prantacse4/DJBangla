@@ -1,0 +1,290 @@
+{% extends 'djangoGallery/base.html' %}
+
+{% load static %}
+{% block title %}
+    PROJECTS | GALLERY
+{% endblock title %}
+
+
+{% block body %}
+
+<!-- ERRORS AND SUCCESS MESSAGES -->
+
+<!-- <div class="container">
+    {% for message in messages %}
+    <div class="alert alert-success">
+        <h5 class="text-center">{{message}}</h5>
+    </div>
+    {% endfor %}
+
+    {% if myform.errors.album %}
+    <div class="alert alert-danger">
+        <h5 class="text-center">{{myform.errors.album}}</h5>
+    </div>
+    {% endif %}
+
+</div> -->
+
+<!-- ERRORS AND SUCCESS MESSAGES -->
+
+
+
+<div class="gallery">
+    <div class="leftsection">
+        <div class="album">
+            <a href="{% url 'gallery' %}" class="btn btn-info">Home</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#createAlbumModal" id="resetalbum">Create Album</a>
+
+           
+           {% for album in album %}
+            <a href="{% url 'albums' album.id %}">
+                <div class="gallery_items 
+                
+                {% if this_album.id == album.id %}
+                    aactive
+                {% endif %}
+                    
+                ">
+                    <div class="overlay">
+                        <div class="text">{{album.album}}</div>
+                    </div>
+                    <div class="img-gradient ">
+                        <div class="imgalbum">
+                            {% for photos in photos %}
+                        {% if photos.album == album  %}
+                                <img src="{{ photos.image.url }}" alt="">
+                        {% endif %}
+                        
+                    {% endfor %}
+                    <img src="{% static 'image/1.jpg' %}" alt="">
+                        </div>            
+                    </div>
+                </div>
+                <form action="{% url 'delete_album' album.id %}" class="d-inline" method="POST" >
+                    {% csrf_token %}
+                    <div class="mybutton text-center w-100">
+                        <button class="btn btn-danger w-100">Delete Album</button>
+                    </div>
+                </form>
+                </a>
+           {% endfor %}
+               
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div class="modal fade" id="createAlbumModal" tabindex="-1" role="dialog" aria-labelledby="createAlbumModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+
+
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="createAlbumModalTitle">Create Album</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="resetalbum">
+                <span aria-hidden="true" id="resetalbum">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <form  method="POST" id="albumform">
+                {% csrf_token %}
+                <input type="text" class="form-control" name="album" placeholder="Album name" id="albuminput" required>
+            </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="resetalbum">Close</button>
+              <button type="button" class="btn btn-primary" id="albumbtnsubmit">Create</button>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <div class="rightsection">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="text-center text-primary" id="reset" data-toggle="modal" data-target="#AddPhotoModal">Add Some Photos to this Album <span class="spnaplus" >+</span></h5>
+            </div>
+        </div>
+
+
+
+
+        <div class="modal fade" id="AddPhotoModal" tabindex="-1" role="dialog" aria-labelledby="AddPhotoModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="AddPhotoModalLabel">Add Photos</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="reset">
+                    <span aria-hidden="true" id="reset">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form action="{% url 'add_photo_from_album'  this_album.id%}" method="POST" id="photoform" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                    <div class="albumdetails">
+                        <select class="form-control" name="album" >
+                            <option selected value="{{ this_album.id }}">{{this_album.album}}</option>
+                        </select>
+                    </div>
+
+                    <div class="uploader">
+                        <div class="draganddrop">
+                            <div class="insidedndd">
+                                <img src="{% static 'image/dnd.png' %}" />
+                                <p>Select or Drag and Drop Photos</p>
+                            </div>
+                        </div>
+                        <img id="uploaderimage" src=""/>
+                        <input type="file" name="image"  id="filePhoto" onchange="readURL(this);" />
+                    </div>
+                </div>
+                </form>
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" id="reset">Close</button>
+                  <button type="button" class="btn btn-primary"  id="photouploadbtn">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="insidephotos">
+            <div class="row">
+
+                
+                
+                {% for photos in photosal %}
+            
+                    <div class="image_size col-md-3">
+                        <img src="{{ photos.image.url }}" alt="" width="100%">
+
+                        <form action="{% url 'delete_photos_from_album' photos.id %}" method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <div class="mybutton text-center w-100">
+                                <button class="btn btn-danger w-100">Delete Photo</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                {% endfor %}
+                     
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+{% endblock body %}
+
+    
+
+
+{% block scripts %}
+
+    <script>
+    // Form Resubmission Stop Query 
+        $(document).ready(function(){
+        window.history.replaceState('','',window.location.href)
+        });
+    
+    $('#uploaderimage').ready(function(){
+        $('#uploaderimage').hide();
+        $("#albuminput").val(null); 
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#uploaderimage').show();
+                $('#uploaderimage').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+
+    $('#reset').on('click',function(){
+        $('#filePhoto').val(null);
+        $('#uploaderimage').attr('src', null);
+        $('#uploaderimage').hide();
+      });
+
+      $('#resetalbum').on('click',function(){
+        $("#albuminput").val(null); 
+      });
+
+
+
+        $("#albumbtnsubmit").click(function(){        
+            $("#albumform").submit(); 
+        });
+
+        $("#photouploadbtn").click(function(){        
+            $("#photoform").submit(); 
+        });
+
+ </script>
+
+
+
+{% endblock scripts %}
+    
