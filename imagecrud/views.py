@@ -18,6 +18,7 @@ def imagecrud(request):
         if myform.is_valid():
             myform.save(commit=True)
             return HttpResponseRedirect('/imagecrud')
+    diction = {'allimage':allimage, 'total_image':total_image}
 
     return render(request, 'imagecrud/index.html', context=diction)
 
@@ -59,5 +60,5 @@ def crudimage_update(request, id):
         if myform.is_valid():
             myform.save(commit=True)
             messages.success(request, 'Image updated successfully')
-            return HttpResponseRedirect('/imagecrud/edit_image/'+string_id+'/')
+            return HttpResponseRedirect('/imagecrud/')
 
