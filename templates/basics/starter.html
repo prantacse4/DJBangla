@@ -74,8 +74,28 @@
                 তাই আগে থেকেই ইন্সটল করে রাখবেন। REST API যদি নাম শুনে থাকেন তাহলে সেটার জন্যেই কাজে লাগবে। কমান্ড গুলো
                 নিচে দেয়া হলো।
                 <br><br><strong>pip install django</strong> (সবচেয়ে নতুন ভার্শন ইন্সটল হবে)
-                <br><strong>pip install django==3.0.7</strong> (আপনার পছন্দ করা ভার্শন)
+                <br><strong>pip install django==3.1.6</strong> (আপনার পছন্দ করা ভার্শন)
                 <br><strong>pip install djangorestframework</strong> (REST API)
+                <br><strong>pip install django-cleanup</strong> (File Management)
+                <br><strong>pip install Pillow</strong> (Image Management)
+                <br><strong>pip install Pillow</strong> (Image Management)
+                <br><strong>corheaders</strong> (React/Vue Permission Management)
+
+            </p>
+            <hr>
+        </div>
+
+        
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>Uninstall করতে হলে</b></h4>
+            <hr>
+            <p>
+                <code>* সবার আগে ইনভাইরনমেন্ট এ ঢুকে pip list দিয়ে দেখে নিতে হবে কি কি ইনসটল করা আছে</code><br>
+                <code>* pip uninstall packagename</code> এতে প্যাকেজ রিমুভ হয়ে যাবে<br><br>
+                <code>* ভার্চুয়াল ইনভাইরনমেন্ট রিমুভ করতে হলে </code><br>
+                <code>* rmvirtualenv envname</code><br><br>
+                <code>* virtualenvwrapper-win ই রিমুভ করতে হলে</code><br>
+                <code>* pip unsinstall virtualenvwrapper-win</code><br>
             </p>
             <hr>
         </div>
@@ -313,6 +333,60 @@
 
 
         <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>ছবি এর জন্য যা যা লাগবে </b></h4>
+            <hr>
+            <p><code>Pillow</code><br>
+            <code>django-cleanup</code>
+            </p>
+            <hr>
+        </div>
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>REST API এর জন্যে যা যা লাগবে </b></h4>
+            <hr>
+            <p><code>djangorestframework</code><br>
+            </p>
+            <hr>
+        </div>
+
+
+        <div class="container mydiv">
+            <h4 class="text-center pt-4 mb-4"><b>Wrong Url দিলে তার সলুশন</b></h4>
+            <hr>
+            <p>
+                <code>from django.contrib import admin</code><br>
+                <code>from django.urls import path, include</code><br>
+                <code>from django.conf import settings</code><br>
+                <code>from django.conf.urls.static import static</code><br>
+                <code>from basics import views</code><br>
+                <code>from django.urls import re_path</code><br><br>
+                <code>urlpatterns = [</code><br>
+                <code>path('admin/', admin.site.urls),</code><br>
+                <code>]</code><br><br>
+                <code>if settings.DEBUG:</code><br>
+                <code>urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</code><br><br>
+                <code>urlpatternsForApps = [</code><br>
+                <code>]</code><br><br>
+                <code>urlpatterns += urlpatternsForApps</code><br><br>
+                <code>wrongurls = [</code><br>
+                <code>re_path('home/.*/', views.starter, name='starter'),</code>এটা ভুল ইউ আর এল দিলে স্টার্টার এ নিয়ে যাবে। <br>
+                <code> re_path('.*/', views.wrongurl, name='wrongurl'),</code>এইটা একই ভাবে wrongurl এ নিয়ে যাবে।<br>
+                <code> ]</code><br>
+                <code>urlpatterns += wrongurls</code><br>
+
+
+            
+            </p>
+            <hr>
+        </div>
+
+
+
+
+
+
+
+        <div class="container mydiv">
             <h4 class="text-center pt-4 mb-4"><b>সকল প্রোজেক্ট</b></h4>
             <hr>
             <div class="projectnav">
@@ -328,7 +402,7 @@
             </div>
 
             <div class="projectnav">
-                <a href="{% url 'imagecrud' %}">IMAGE C R U D With Validation</a>
+                <a href="">IMAGE C R U D With Validation</a>
             </div>
 
             <div class="projectnav">
@@ -346,7 +420,7 @@
             </div>
 
             <div class="projectnav">
-                <a href="{% url 'multiauth' %}">Multiple Login with Session and Protect Views</a>
+                <a href="">Multiple Login with Session and Protect Views</a>
             </div>
 
             <div class="projectnav">
